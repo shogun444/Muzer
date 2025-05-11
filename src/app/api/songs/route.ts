@@ -5,7 +5,13 @@ import axios from "axios";
 
 export async function GET(req : NextRequest){
 
-const AllSongs = await prisma.song.findMany( {} )
+const AllSongs = await prisma.song.findMany({
+include :{ 
+  _count : {
+    select : {upvotes : true}
+  }
+}
+})
 return NextResponse.json({msg : "All current Songs",AllSongs},{status:200})
 }
 

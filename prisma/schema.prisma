@@ -29,6 +29,8 @@ model upvotes{
   user User @relation(fields: [userId],references: [id])
   songId String
   song Song @relation(fields: [songId],references: [id])
+
+@@unique([userId,songId])
 }
 
 
