@@ -18,14 +18,15 @@ export default function Dashboard() {
   const session = useSession()
   const Itmref = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState(false)
-
+  const [currentIndex,setCurrentIndex] = useState(0)
 
   const [playing,setPlaying] = useState<Datas[]>([])
+
   useEffect(()=>{
     const fetch = async()=>{
       try {
           const play =  await axios.get('http://localhost:3000/api/Nowplaying')
-     setPlaying([play.data.res])
+     setPlaying(play.data.res)
       } catch (error) {
         console.log(error)
       }
@@ -82,12 +83,24 @@ export default function Dashboard() {
 
           
           <h2 className="text-lg font-semibold text-neutral-700 mb-4">Now Playing</h2>
-          {playing.map((itm,index)=>(<div key={ index}>
+          {playing.length > 0  && 
+          <>
             <p className="text-md font-medium text-neutral-600 mb-3">
-              {itm.description}-{itm.name}
+              {playing[currentIndex]?.description}-{playing[currentIndex]?.name}
           </p>
           <div className="w-160 h-90 bg-black rounded-md mb-4 mr-13 ml-9   " >
-           <ReactPlayer url={`https://www.youtube.com/watch?${itm.videoId}`} />
+           <ReactPlayer 
+           controls
+           
+           onEnded={()=>{
+            if(currentIndex < playing.length-1) {
+  setCurrentIndex(prev => prev+1)
+            }
+          else { 
+            setCurrentIndex(0)
+          }
+           }}
+           url={`https://www.youtube.com/watch?${playing[currentIndex]?.videoId}`} />
 
             </div>
 
@@ -99,7 +112,8 @@ export default function Dashboard() {
               <>Play</>
             )}
           </Button>
-          </div>))}
+           </>
+}
           
         </div>
       </div>
