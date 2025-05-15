@@ -2,17 +2,37 @@
 
 import { Button } from "@/components/ui/button"
 import axios from "axios"
-import { LoaderCircle, Plus } from "lucide-react"
+import { Divide, LoaderCircle, Plus } from "lucide-react"
 import Data from "./Data"
 import { toast } from "sonner"
-import {  useRef, useState } from "react"
+import  React, {  useEffect, useRef, useState } from "react"
 import { useSession } from "next-auth/react"
+import ReactPlayer from 'react-player'
 
+interface Datas{
+  description : string,
+  name : string,
+  videoId : string
+}
 export default function Dashboard() {
   const session = useSession()
   const Itmref = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState(false)
 
+
+  const [playing,setPlaying] = useState<Datas[]>([])
+  useEffect(()=>{
+    const fetch = async()=>{
+      try {
+          const play =  await axios.get('http://localhost:3000/api/Nowplaying')
+     setPlaying([play.data.res])
+      } catch (error) {
+        console.log(error)
+      }
+   
+     } 
+     fetch()
+  },[])
   async function sendReq() {
     try {
       setLoading(true)
@@ -36,7 +56,7 @@ export default function Dashboard() {
     <div className="flex flex-col justify-center items-center w-full  bg-neutral-100 px-4 py-10">
       
       <h1 className="text-4xl font-semibold text-neutral-800 ">Music Dashboard</h1>
-      <div className="flex flex-col p-2 gap-10 w-full max-w-2xl">
+      <div className="flex flex-col p-2 gap-10 w-full max-w-3xl">
         {/* Add Song Section */}
         <div className="shadow-lg px-6 pt-3 pb-6 rounded-2xl  mt-30 bg-white w-full">
           <h2 className="text-lg font-semibold text-neutral-700 mb-4">Add a Song</h2>
@@ -62,8 +82,16 @@ export default function Dashboard() {
 
           
           <h2 className="text-lg font-semibold text-neutral-700 mb-4">Now Playing</h2>
-          <p className="text-md font-medium text-neutral-600 mb-3">Blinding Lights</p>
-          <div className="w-full aspect-video bg-black rounded-md mb-4" />
+          {playing.map((itm,index)=>(<div key={ index}>
+            <p className="text-md font-medium text-neutral-600 mb-3">
+              {itm.description}-{itm.name}
+          </p>
+          <div className="w-160 h-90 bg-black rounded-md mb-4 mr-13 ml-9   " >
+           <ReactPlayer url={`https://www.youtube.com/watch?${itm.videoId}`} />
+
+            </div>
+
+
           <Button className="w-full bg-green-500">
             {loading ? (
               <span className="animate-spin"><LoaderCircle /></span>
@@ -71,6 +99,8 @@ export default function Dashboard() {
               <>Play</>
             )}
           </Button>
+          </div>))}
+          
         </div>
       </div>
 

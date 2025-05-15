@@ -17,7 +17,7 @@ interface Data{
 }
 
 export default  function Data(){
-  const [upvotedSong,setUpvotedSong] = useState<Set<string>>(new Set())
+ 
   const [data,setData] = useState<Data[]>([])
   const [loading,setLoading] = useState(false)
   const session = useSession()
@@ -56,13 +56,11 @@ userId : userId
 })
 if(vote.data.status === 'voted'){
   toast.success('Voted') 
-  setUpvotedSong((prev)=>new Set(prev).add(id))
+  
 }
 else if (vote.data.status === 'removed'){ 
 toast.success('Vote Removed') 
-const updated = new Set(upvotedSong)
-updated.delete(id)
-setUpvotedSong(updated)
+
 }
 
 } catch (error) {
@@ -75,14 +73,14 @@ console.log(error)
 
 return(<>
 <div>{data.length> 0 && <> {data.map((itm,index)=>(<div className="grid grid-cols-5 items-center justify-around rounded-lg bg-neutral-200 p-3 m-1" key={itm.id}>
-  <img className="h-30 rounded-lg mr-5" src={itm.thumbnail} alt="" />
-  <div className="text-md col-start-2 col-end-4 font-semibold text-neutral-900">
+  <img className="h-30 rounded-lg " src={itm.thumbnail} alt="" />
+  <div className="text-md pl-3 col-start-2 col-end-4 font-semibold text-neutral-900">
     <h1 className="text-md font-semibold text-neutral-900">{itm.description}</h1>
   <h1 className="text-sm font-semibold text-neutral-700">{itm.name}</h1>
      </div>
 
      <div className="col-start-5 flex items-center">
-    <Button  onClick={()=>sendUp(itm.id)}>{!upvotedSong.has(itm.id) &&    <ThumbsUp className="text-green-500" />}</Button>
+    <Button  onClick={()=>sendUp(itm.id)}>{  <ThumbsUp className="text-green-500" />}</Button>
     <h1 className="font-semibold text-sm px-2">{itm._count.upvotes}</h1>
      </div>
   
