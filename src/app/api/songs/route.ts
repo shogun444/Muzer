@@ -7,8 +7,14 @@ export async function GET(req : NextRequest){
 
 const AllSongs = await prisma.song.findMany({
 include :{ 
+  
   _count : {
     select : {upvotes : true}
+  }
+},
+orderBy : {
+  upvotes : {
+    _count : 'desc'
   }
 }
 })

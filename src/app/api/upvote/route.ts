@@ -25,9 +25,20 @@ const existingVote = await prisma.upvotes.findFirst({
     songId : songId
   }
 })
+
 if(existingVote) { 
-return NextResponse.json({msg : 'already upvoted'},{status :200})
+  const deleteVote = await prisma.upvotes.delete({
+where : {
+  id : existingVote.id
 }
+  
+})
+
+if(deleteVote){
+  return NextResponse.json({msg : "Vote Removed Succesfully"},{status : 200})
+}
+}
+
 
 const createVote = await prisma.upvotes.create({
   data : {
@@ -35,9 +46,13 @@ const createVote = await prisma.upvotes.create({
     songId : songId
   }
 })
+
 if(createVote){
-  return NextResponse.json({msg : "Voted Succesfully"},{status : 200})
+  return NextResponse.json({msg : "Voted Succesfully", status : "votes"},{status : 200})
 }
+
+
+return NextResponse.json({msg : "Vote Removed" , status : "removed"},{status : 200})
 } catch (error) {
   return NextResponse.json({msg : "Not Signed In"},{status : 400})
 }
