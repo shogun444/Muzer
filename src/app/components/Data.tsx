@@ -17,7 +17,7 @@ interface Data{
 }
 
 export default  function Data(){
-  const [upvotedSong,setUpvotedSong] = useState<string[]>([])
+  const [upvotedSong,setUpvotedSong] = useState<Set<string>>(new Set())
   const [data,setData] = useState<Data[]>([])
   const [loading,setLoading] = useState(false)
   const session = useSession()
@@ -56,9 +56,13 @@ userId : userId
 })
 if(vote.data.status === 'voted'){
   toast.success('Voted') 
+  setUpvotedSong((prev)=>new Set(prev).add(id))
 }
 else if (vote.data.status === 'removed'){ 
 toast.success('Vote Removed') 
+const updated = new Set(upvotedSong)
+updated.delete(id)
+setUpvotedSong(updated)
 }
 
 } catch (error) {
@@ -78,7 +82,7 @@ return(<>
      </div>
 
      <div className="col-start-5 flex items-center">
-    <Button onClick={()=>sendUp(itm.id)}>{<ThumbsUp/>}</Button>
+    <Button  onClick={()=>sendUp(itm.id)}>{!upvotedSong.has(itm.id) &&    <ThumbsUp className="text-green-500" />}</Button>
     <h1 className="font-semibold text-sm px-2">{itm._count.upvotes}</h1>
      </div>
   
