@@ -86,9 +86,9 @@ export default function Dashboard() {
           {playing.length > 0  && 
           <>
             <p className="text-md font-medium text-neutral-600 mb-3">
-              {playing[currentIndex]?.description}-{playing[currentIndex]?.name}
+              {playing[currentIndex]?.description} - {playing[currentIndex]?.name}
           </p>
-          <div className="w-160 h-90 bg-black rounded-md mb-4 mr-13 ml-9   " >
+          <div className="w-160 h-90  bg-black rounded-md mb-4 mr-13 ml-9   " >
            <ReactPlayer 
            controls
            

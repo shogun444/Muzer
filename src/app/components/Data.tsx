@@ -72,7 +72,7 @@ console.log(error)
  }
 
 return(<>
-<div>{data.length> 0 && <> {data.map((itm,index)=>(<div className="grid grid-cols-5 items-center justify-around rounded-lg bg-neutral-200 p-3 m-1" key={itm.id}>
+<div>{data.length> 0 && <> {data.map((itm,index)=>(<div className="grid grid-cols-5 items-center justify-around rounded-2xl bg-neutral-200 p-3 m-3" key={itm.id}>
   <img className="h-30 rounded-lg " src={itm.thumbnail} alt="" />
   <div className="text-md pl-3 col-start-2 col-end-4 font-semibold text-neutral-900">
     <h1 className="text-md font-semibold text-neutral-900">{itm.description}</h1>
