@@ -80,7 +80,7 @@ return(<>
      </div>
 
      <div className="col-start-5 flex items-center">
-    <Button  onClick={()=>sendUp(itm.id)}>{  <ThumbsUp className="text-green-500" />}</Button>
+    <Button  onClick={()=>sendUp(itm.id)}>{  <ThumbsUp className="text-cyan-500" />}</Button>
     <h1 className="font-semibold text-sm px-2">{itm._count.upvotes}</h1>
      </div>
   

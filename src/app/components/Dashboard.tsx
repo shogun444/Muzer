@@ -67,7 +67,7 @@ export default function Dashboard() {
             type="text"
             placeholder="Paste song URL here"
           />
-          <Button onClick={sendReq} className="w-full bg-green-500">
+          <Button onClick={sendReq} className="w-full bg-cyan-600">
             {loading ? (
               <span className="animate-spin"><LoaderCircle /></span>
             ) : (
@@ -105,7 +105,7 @@ export default function Dashboard() {
             </div>
 
 
-          <Button className="w-full bg-green-500">
+          <Button className="w-full bg-cyan-600">
             {loading ? (
               <span className="animate-spin"><LoaderCircle /></span>
             ) : (
