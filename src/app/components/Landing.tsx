@@ -59,6 +59,31 @@ export default function Landing() {
   },
 ];
 
+const card =[
+  {
+svg : "",
+  heading : "AI Audio Separation",
+  desription : "Separate vocals, drums, guitar, bass, and other instruments from any song. Isolate instruments or mute tracks in one click. "
+  },
+  {
+svg : "",
+  heading : "Smart Metronome & Audio Speed Changer",
+  desription : "Instantly generate metronome counts in sync with your favorite song, whether recorded in studio or live. Slow down or speed up any song with 1-click. The App instantly detects and displays the BPM of any song. "
+  },
+  {
+svg : "",
+  heading : "Chord Detection",
+  desription : "Quickly detect easy to advanced chords. Use the Pitch Changer to instantly transpose chords in real time to your key of choice."
+  }
+  
+]
+
+
+
+
+
+
+
 
   const nav = [
     { name: "Features for Musicians" },
@@ -81,10 +106,10 @@ export default function Landing() {
   return (
     <div className="min-h-screen w-full bg-neutral-900 text-white">
       {/* Hero Section */}
-      <div className="flex flex-col lg:flex-row justify-center items-center pt-20 px-4">
-        <div className="max-w-6xl pr-5">
+      <div className="flex flex-col  lg:flex-row justify-center items-center  px-4">
+        <div className="max-w-6xl pr-5 pb-30">
           <h1 className="text-6xl font-semibold text-neutral-200">
-            Your Music, Reimagined
+            The Musician's App
           </h1>
           <p className="text-neutral-400 pt-5 font-semibold text-lg">
             Experience music like never before with our premium audio platform.
@@ -95,13 +120,13 @@ export default function Landing() {
           </p>
           <Button
             size={"lg"}
-            className="bg-cyan-600 text-neutral-900 text-md p-6 mt-6"
+            className="bg-teal-600 text-neutral-900 text-lg p-6 mt-6"
           >
             Start Free
           </Button>
         </div>
 
-        <div className="flex gap-2 p-2 mt-10 lg:mt-0">
+        <div className="flex gap-2 p-2 pt-5 lg:mt-0">
           <div className="flex flex-col">
             {videos
               .filter((_, i) => i % 2 === 0)
@@ -111,7 +136,7 @@ export default function Landing() {
                     autoPlay
                     loop
                     muted
-                    className="rounded-xl"
+                    className="rounded-xl mask-b-from-10%"
                     width={300}
                     src={itm.src}
                   />
@@ -127,7 +152,7 @@ export default function Landing() {
                     autoPlay
                     loop
                     muted
-                    className="rounded-xl"
+                    className="rounded-xl mask-b-from-0%"
                     width={300}
                     src={itm.src}
                   />
@@ -139,7 +164,8 @@ export default function Landing() {
 
       <div className="text-center px-4">
         <h1 className="text-neutral-200 text-5xl pt-10">
-          More than an app: a music partner
+          Everything in one place
+
         </h1>
         <h1 className="text-neutral-500 text-2xl pt-5">
           Your private library accessible from any device, stored securely in

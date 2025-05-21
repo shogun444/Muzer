@@ -47,11 +47,11 @@ export default function Section() {
     <>
       <div className="h-screen w-full bg-neutral-300">
         <h1 className="text-3xl text-center font-semibold text-neutral-800">
-          Join the Sound Revolution - Start Sharing Today!
+          Join the Sound Revolution  
         </h1>
-
+ <h1 className="text-teal-600 text-center text-xl font-semibold pt-3">Start Sharing Today!</h1>
         <div className="flex justify-center">
-          <Button size={"lg"} className="mt-5 text-md p-1 ">
+          <Button size={"lg"} className="mt-5 text-md  ">
             Sign Up
           </Button>
         </div>
@@ -75,6 +75,7 @@ export default function Section() {
               className="p-6 rounded-xl shadow-md w-80 flex-shrink-0 flex flex-col justify-between bg-white"
               key={idx}
             >
+              <img className="pb-10" width={20} src={'/quote.svg'} alt="" />
               <p className="text-neutral-700 text-sm mb-6 leading-relaxed">
                 "{test.quote}"
               </p>
