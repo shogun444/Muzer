@@ -51,7 +51,7 @@ export default function Section() {
         </h1>
 
         <div className="flex justify-center">
-          <Button size={"lg"} className="mt-5 text-md">
+          <Button size={"lg"} className="mt-5 text-md p-1 ">
             Sign Up
           </Button>
         </div>
