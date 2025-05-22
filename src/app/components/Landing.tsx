@@ -116,7 +116,7 @@ svg : "",
   }, [features.length, scrollYProgress]);
 
   return (
-    <div className="min-h-screen w-full bg-neutral-900 text-white">
+    <div className="min-h-screen w-full bg-neutral-900 text-white rounded-xl">
       {/* Hero Section */}
       <div className="flex flex-col  lg:flex-row justify-center items-center  px-4">
         <div className="max-w-6xl pr-5 pb-30">
@@ -138,7 +138,7 @@ svg : "",
           </Button>
         </div>
 
-        <div className="flex gap-2 p-2 pt-5 lg:mt-0">
+        <div className="flex gap-2 p-2 pt-5 lg:mt-0 relative">
           <div className="flex flex-col">
             {videos
               .filter((_, i) => i % 2 === 0)
@@ -255,7 +255,7 @@ fill="#024f52" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="tru
 
       {/* Features Section */}
       <div ref={containerRef} className="mt-32 h-[250vh] bg-neutral-300 relative px-4 pb-32">
-        <div className="sticky pt-10 top-5 flex flex-col items-center space-y-20">
+        <div className="sticky pt-20 top-5 flex flex-col items-center space-y-20">
           <div className="flex gap-2 flex-wrap justify-center">
             {nav.map((itm, index) => (
               <div

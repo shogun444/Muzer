@@ -2,12 +2,13 @@
 
 import { Button } from "@/components/ui/button"
 import axios from "axios"
-import { Divide, LoaderCircle, Plus } from "lucide-react"
+import { Divide, LoaderCircle, Plus, Search } from "lucide-react"
 import Data from "./Data"
 import { toast } from "sonner"
 import  React, {  useEffect, useRef, useState } from "react"
 import { useSession } from "next-auth/react"
 import ReactPlayer from 'react-player'
+import Footer from "./Footer"
 
 interface Datas{
   description : string,
@@ -54,12 +55,40 @@ export default function Dashboard() {
 
 
   return (
-    <div className="flex flex-col justify-center items-center w-full  bg-neutral-100 px-4 py-10">
+    <div className="flex flex-col justify-center items-center w-full pt-10 bg-neutral-100 ">
       
-      <h1 className="text-4xl font-semibold text-neutral-800 ">Music Dashboard</h1>
+      <div className="flex justify-between w-full px-25 ">
+
+        <div> 
+  <h1 className="text-4xl font-semibold text-neutral-800 ">Music Dashboard</h1>
+        </div>
+       
+
+         <div className="flex justify-center items-center ">
+          <Search className="absolute top-29 right-130 text-neutral-500 mx-5"/>
+            <input
+            ref={Itmref}
+            className=" w-full border border-neutral-300  rounded-lg bg-neutral-200 pl-15 p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            type="text"
+            placeholder= "Paste the URL"
+          />
+          <Button onClick={sendReq} className="w-fit ml-5 bg-cyan-600">
+            {loading ? (
+              <span className="animate-spin"><LoaderCircle /></span>
+            ) : (
+              <>
+                Add to Playlist
+              </>
+            )}
+          </Button>
+         </div>
+      </div>
+     
+
+
       <div className="flex flex-col p-2 gap-10 w-full max-w-3xl">
         {/* Add Song Section */}
-        <div className="shadow-lg px-6 pt-3 pb-6 rounded-2xl  mt-30 bg-white w-full">
+        {/* <div className="shadow-lg px-6 pt-3 pb-6 rounded-2xl  mt-30 bg-white w-full">
           <h2 className="text-lg font-semibold text-neutral-700 mb-4">Add a Song</h2>
           <input
             ref={Itmref}
@@ -76,10 +105,10 @@ export default function Dashboard() {
               </>
             )}
           </Button>
-        </div>
+        </div> */}
 
         {/* Now Playing Section */}
-        <div className="shadow-lg px-6 pt-4 pb-6 rounded-2xl bg-white w-full">
+        <div className="shadow-lg px-6 pt-4 mt-20 pb-6 rounded-2xl bg-white w-full">
 
           
           <h2 className="text-lg font-semibold text-neutral-700 mb-4">Now Playing</h2>
@@ -119,10 +148,11 @@ export default function Dashboard() {
       </div>
 
       {/* Playlist Section */}
-      <div className="shadow-lg mt-10 px-6 pt-4 pb-6 rounded-2xl bg-white w-full max-w-4xl">
+      <div className="shadow-lg mt-10 px-6 pt-4 mb-5 pb-6 rounded-2xl bg-white w-full max-w-4xl">
         <h2 className="text-lg font-semibold text-neutral-700 mb-4">Playlist</h2>
         <Data />
       </div>
+      <Footer/>
     </div>
   )
 }

@@ -1,4 +1,6 @@
-import React from "react";
+"use-client"
+
+import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import {motion} from 'motion/react'
  
@@ -12,6 +14,8 @@ export default function Bento({children,className}:Props){
 
 return(<>
 <motion.div
+
+
 whileHover={{
   scale : 1.01
 }}

@@ -56,7 +56,7 @@ export default function Section() {
           </Button>
         </div>
 
-<div className="w-full overflow-hidden "> 
+<div className="w-full overflow-hidden relative"> 
         {/* Testimonial Marquee */}
         <motion.div
           
