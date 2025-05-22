@@ -72,14 +72,37 @@ console.log(error)
  }
 
 return(<>
-<div>{data.length> 0 && <> {data.map((itm,index)=>(<div className="grid grid-cols-5 items-center justify-around rounded-2xl bg-neutral-200 p-3 m-3" key={itm.id}>
-  <img className="h-30 rounded-lg " src={itm.thumbnail} alt="" />
-  <div className="text-md pl-3 col-start-2 col-end-4 font-semibold text-neutral-900">
-    <h1 className="text-md font-semibold text-neutral-900">{itm.description}</h1>
-  <h1 className="text-sm font-semibold text-neutral-700">{itm.name}</h1>
+<div>
+  {loading &&
+  <div className="w-full rounded-md">
+              
+              <div className="flex flex-col animate-pulse space-x-4">
+                <div className="flex-1 space-y-7 py-1">
+                  <div className="h-20 rounded-2xl bg-gray-200"></div>
+                </div>
+                 <div className="flex-1 space-y-7 py-1">
+                  <div className="h-20 rounded-2xl bg-gray-200"></div>
+                </div>
+                 <div className="flex-1 space-y-7 py-1">
+                  <div className="h-20 rounded-2xl bg-gray-200"></div>
+                </div>
+                 <div className="flex-1 space-y-7 py-1">
+                  <div className="h-20 rounded-2xl bg-gray-200"></div>
+                </div> 
+              </div>
+            </div>
+
+
+  }
+  
+  {data.length> 0 && <> {data.map((itm,index)=>(<div className="grid grid-cols-6 overflow-y-auto mt-3 items-center justify-around rounded-2xl bg-neutral-200 p-3  m-3" key={itm.id}>
+  <img className="w-100  rounded-lg " src={itm.thumbnail} alt="" />
+  <div className=" pl-3 col-start-2 col-end-5 font-semibold text-neutral-900">
+    <h1 className="text-xs font-semibold text-neutral-900">{itm.description}</h1>
+  <h1 className="text-xs font-semibold text-neutral-700">{itm.name}</h1>
      </div>
 
-     <div className="col-start-5 flex items-center">
+     <div className="col-start-6 flex items-center">
     <Button  onClick={()=>sendUp(itm.id)}>{  <ThumbsUp className="text-cyan-500" />}</Button>
     <h1 className="font-semibold text-sm px-2">{itm._count.upvotes}</h1>
      </div>
