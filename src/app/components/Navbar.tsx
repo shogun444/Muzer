@@ -44,7 +44,7 @@ export default function Navbar(){
     duration : 0.2,
     ease : 'easeInOut'
    }}
-  className=" items-center z-20 sticky mx-auto top-2 left-0 pt-2 flex text-neutral-50 justify-around bg-neutral-900 border-1 rounded-md border-neutral-800 h-15 w-full">
+  className={`${small ? 'rounded-lg border-1' : ''} items-center z-20 sticky mx-auto top-2 left-0 pt-2 flex text-neutral-50 justify-around bg-neutral-900   border-neutral-800 h-15 w-full`}>
 <h1>Muzer</h1>
     <div onMouseLeave={()=>setHovered(null)} className="flex "> 
     {Links.map((itm,index)=>(<Link

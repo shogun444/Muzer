@@ -16,14 +16,7 @@ export default function Landing() {
     offset: ["start start", "end end"],
   });
 
-  const videos = [
-    { src: "/Piano.mp4" },
-    { src: "/drums.mp4" },
-    { src: "/Guitar1.mp4" },
-    { src: "/Guitar2.mp4" },
-    { src: "/Synth.mp4" },
-    { src: "/Vocals.mp4" },
-  ];
+ 
 
   const features = [
   {
@@ -116,64 +109,34 @@ svg : "",
   }, [features.length, scrollYProgress]);
 
   return (
-    <div className="min-h-screen w-full bg-neutral-900 text-white rounded-xl">
+    <div className="min-h-screen w-full bg-neutral-900 text-white ">
       {/* Hero Section */}
-      <div className="flex flex-col  lg:flex-row justify-center items-center  px-4">
-        <div className="max-w-6xl pr-5 pb-30">
+      <div className="flex flex-col  lg:flex-row justify-center items-center  pl-4">
+        <div className="max-w-8xl text-center pb-30 pt-30">
           <h1 className="text-6xl font-semibold text-neutral-200">
             The Musician's App
           </h1>
-          <p className="text-neutral-400 pt-5 font-semibold text-lg">
+          <p className="text-neutral-400 pt-7 font-semibold ">
             Experience music like never before with our premium audio platform.
-            <br />
+            
             Discover, stream, and share your favorite tracks with unparalleled
             <br />
             sound quality.
           </p>
           <Button
             size={"lg"}
-            className="bg-teal-600 text-neutral-900 text-lg p-6 mt-6"
+            className="bg-teal-600 hover:bg-teal-700 hover:cursor-pointer
+             text-neutral-900 text-lg p-6 mt-6"
           >
             Start Free
           </Button>
         </div>
 
-        <div className="flex gap-2 p-2 pt-5 lg:mt-0 relative">
-          <div className="flex flex-col">
-            {videos
-              .filter((_, i) => i % 2 === 0)
-              .map((itm, i) => (
-                <div key={i} className={`${i === 0 ? "pt-20" : "pt-0"} my-2`}>
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    className="rounded-xl mask-b-from-10%"
-                    width={300}
-                    src={itm.src}
-                  />
-                </div>
-              ))}
-          </div>
-          <div className="flex flex-col">
-            {videos
-              .filter((_, i) => i % 2 !== 0)
-              .map((itm, i) => (
-                <div key={i} className={`${i === 0 ? "pt-8" : "pt-0"} my-2`}>
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    className="rounded-xl mask-b-from-0%"
-                    width={300}
-                    src={itm.src}
-                  />
-                </div>
-              ))}
-          </div>
-        </div>
+      
       </div>
-
+  <div className="flex justify-center ">
+          <img width={1180}  className="rounded-2xl " src="/Pro.webp" alt="" />
+        </div>
       <div className="text-center px-64 mt-10 pb-10">
         <h1 className="text-neutral-200 text-5xl pt-10">
           Everything in one place
