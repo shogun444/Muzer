@@ -1,20 +1,21 @@
-"use-client"
+"use client"
 
 import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import {motion} from 'motion/react'
+import {motion, Variants} from 'motion/react'
  
 
 type Props  = {
 children : React.ReactNode,
-className : string
+className : string,
+variant? : Variants
 }
 
-export default function Bento({children,className}:Props){
+export default function Bento({children,className,variant}:Props){
 
 return(<>
 <motion.div
-
+variants={variant}
 
 whileHover={{
   scale : 1.01
