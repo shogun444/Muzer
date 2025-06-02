@@ -30,7 +30,7 @@ export default function Dashboard() {
   const [playing, setPlaying] = useState<Datas[]>([])
   const fetcher = (url : string) => axios.get(url).then((res)=>res.data.res)
 
-  const{data,isLoading,mutate,error} = useSWR<Datas[]>('/api/Nowplaying',fetcher)
+  const{data,isLoading,mutate,error} = useSWR<Datas[]>('https://muzer-taupe.vercel.app/api/Nowplaying',fetcher)
   
 
 
@@ -40,9 +40,9 @@ export default function Dashboard() {
       setLoading(true)
       const link = Itmref.current?.value
       const email = session.data?.user?.email
-      const id = await axios.post('/api/getId', { email: email as string })
+      const id = await axios.post('https://muzer-taupe.vercel.app/api/getId', { email: email as string })
       const userId = id.data.User.id
-      await axios.post('/api/songs', { link, userId })
+      await axios.post('https://muzer-taupe.vercel.app/api/songs', { link, userId })
       toast.success('Song Added')
       mutate()
     } catch (error) {
