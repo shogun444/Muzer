@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
+import useSWR from "swr"
 import axios from "axios"
 import { LoaderCircle, Plus, Search } from "lucide-react"
 import Data from "./Data"
@@ -9,6 +10,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { useSession } from "next-auth/react"
 import ReactPlayer from 'react-player'
 import Footer from "./Footer"
+import { motion } from "motion/react"
 
 interface Datas {
   description: string,
@@ -19,26 +21,19 @@ interface Datas {
 export default function Dashboard() {
  
   const session = useSession()
+   const [inputValue,setInputValue] = useState('')
+  const [size,setSize] = useState(false)
   const Itmref = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [data, setData] = useState(false)
+ 
   const [playing, setPlaying] = useState<Datas[]>([])
+  const fetcher = (url : string) => axios.get(url).then((res)=>res.data.res)
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        setData(true)
-        const play = await axios.get('http://localhost:3000/api/Nowplaying')
-        setPlaying(play.data.res)
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setData(false)
-      }
-    }
-    fetch()
-  }, [])
+  const{data,isLoading,mutate,error} = useSWR<Datas[]>('http://localhost:3000/api/Nowplaying',fetcher)
+  
+
+
 
   async function sendReq() {
     try {
@@ -49,6 +44,7 @@ export default function Dashboard() {
       const userId = id.data.User.id
       await axios.post('http://localhost:3000/api/songs', { link, userId })
       toast.success('Song Added')
+      mutate()
     } catch (error) {
       toast.error('Invalid Link')
     } finally {
@@ -57,17 +53,27 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center w-full pt-10 bg-neutral-100">
+    <div
+
+    className="flex flex-col justify-center items-center w-full pt-10 bg-neutral-100">
       <div className="flex justify-between w-full px-10">
         <div>
           <h1 className="text-4xl font-semibold text-neutral-800">Music Dashboard</h1>
         </div>
 
         <div className="flex justify-center items-center">
-          <Search className="absolute text-neutral-500 mx-5" />
-          <input
+          <Search className={`${size || inputValue ? 'opacity-0' : 'opacity-70'} absolute text-neutral-500 mx-5 `}/>
+          <motion.input
+          onMouseEnter={()=>setSize(true)}
+          onMouseLeave={()=>setSize(false)}
+          onChange={(e)=>setInputValue(e.target.value)}
             ref={Itmref}
-            className="w-full border border-neutral-300 rounded-lg bg-neutral-200 pl-10 p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            value={inputValue}
+            style={{
+              width : size ? '400px' : ''
+
+            }}
+            className={`${size ? 'animate-in transition-all ' : 'animate-out transition-all'} w-full border border-neutral-300 rounded-lg bg-neutral-200 pl-10 p-2 focus:outline-none focus:ring-2 focus:ring-teal-500`}
             type="text"
             placeholder="Paste the URL"
           />
@@ -81,11 +87,11 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="flex w-full max-w-7xl px-10 gap-4 mt-10 mb-5">
+      <div className="flex w-full max-w-7xl px-10 gap-8  mt-10 mb-5">
         {/* Now Playing Section */}
         <div className="shadow-lg px-4 py-4 rounded-2xl bg-white w-1/2">
           <h2 className="text-lg font-semibold text-neutral-700 mb-4">Now Playing</h2>
-          {data &&
+          {isLoading   &&
             <div className="w-full rounded-md">
               <div className="h-6 rounded mb-4 bg-gray-200 w-3/4"></div>
               <div className="flex animate-pulse space-x-4">
@@ -98,10 +104,10 @@ export default function Dashboard() {
               </div>
             </div>
           }
-          {playing.length > 0 && (
+          {data && (
             <>
               <p className="text-sm font-medium text-neutral-600 mb-3">
-                {playing[currentIndex]?.description} - {playing[currentIndex]?.name}
+                {data[currentIndex]?.description} - {data[currentIndex]?.name}
               </p>
               <div className="w-full bg-black rounded-md mb-4 overflow-hidden">
                 <ReactPlayer
@@ -115,10 +121,10 @@ export default function Dashboard() {
                       setCurrentIndex(0)
                     }
                   }}
-                  url={`https://www.youtube.com/watch?${playing[currentIndex]?.videoId}`}
+                  url={`https://www.youtube.com/watch?${data[currentIndex]?.videoId}`}
                 />
               </div>
-              <Button className="w-full bg-cyan-600">
+              <Button className="w-full mt-5 bg-cyan-600">
                 {loading ? (
                   <span className="animate-spin"><LoaderCircle /></span>
                 ) : (
@@ -130,9 +136,9 @@ export default function Dashboard() {
         </div>
 
         {/* Playlist Section */}
-        <div className="shadow-lg px-4 py-4 rounded-2xl bg-white w-1/2">
+        <div className="shadow-lg px-4 py-4 h-138 rounded-2xl bg-white w-1/2 overflow-y-auto mask-b-from-88% pb-10 pr-2">
           <h2 className="text-lg font-semibold text-neutral-700 mb-4">Playlist</h2>
-          <Data />
+          <Data  mutated={mutate}/>
         </div>
       </div>
 

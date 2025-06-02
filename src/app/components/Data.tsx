@@ -17,8 +17,11 @@ interface Data{
   _count : any,
   id : string
 }
+interface props{
+  mutated : ()=>void
+}
+export default  function Data({mutated} : props){
 
-export default  function Data(){
  const [open,setOpen] = useState(false)
 const [color,setColor] = useState(false)
 
@@ -27,7 +30,7 @@ const [color,setColor] = useState(false)
   const fetcher = (url : string) =>axios.get(url).then(res => res.data.AllSongs)
 
   const {data  ,error,isLoading,mutate} = useSWR<Data[]>('http://localhost:3000/api/songs',fetcher)
-  
+    mutate()
   async function sendUp(id : string){   
 try {
 const email = session.data?.user?.email
