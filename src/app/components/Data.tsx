@@ -7,6 +7,7 @@ import { ThumbsUp } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useSession } from "next-auth/react"
 import { toast } from "sonner"
+import { motion } from 'motion/react'
 
 
 interface Data {
@@ -23,9 +24,10 @@ interface props {
 
 export default function Data({ mutated }: props) {
   const [votedIds, setVotedIds] = useState<Set<string>>(new Set())
-
+  const [visible,setVisible] = useState(false)
+  const [index,setIndex] =  useState<string>()
   const session = useSession()
-
+  const [modal,setModal] = useState<Data | null>(null)
   const fetcher = (url: string) => axios.get(url).then(res => res.data.AllSongs)
 
   const { data, error, isLoading, mutate } = useSWR<Data[]>('http://localhost:3000/api/songs', fetcher)
@@ -64,9 +66,14 @@ export default function Data({ mutated }: props) {
       console.log(error)
     }
   }
+async function getDetails(id : string){
+  const findSong = await axios.get(`http://localhost:3000/api/song/${id}`)
+  return findSong.data.song
+}
+
 
   return (
-    <div>
+    <div >
       {isLoading &&
         <div className="w-full rounded-md">
           <div className="flex flex-col animate-pulse space-x-4">
@@ -80,25 +87,74 @@ export default function Data({ mutated }: props) {
 
       {data && <>
         {data.map((itm) => (
-          <div
+          <motion.div
+            onClick={async ()=>{
+            setIndex(itm.id)
+            setVisible(prev =>!prev)
+            const data = await getDetails(itm.id)
+            setModal(data)
+            }}
             key={itm.id}
             className="grid grid-cols-6 overflow-y-auto mt-3 items-center justify-around rounded-2xl bg-neutral-200 p-3  m-3">
-            <img className="w-100  rounded-lg " src={itm.thumbnail} alt="" />
-            <div className="pl-3 col-start-2 col-end-5 font-semibold text-neutral-900">
+            <motion.img 
+            layoutId={`card-${itm.id}`}
+            className="w-100  rounded-lg overflow-hidden " src={itm.thumbnail} alt="" />
+            <div 
+          
+            className="pl-3 col-start-2 col-end-5 font-semibold text-neutral-900">
               <h1 className="text-xs font-semibold text-neutral-900">{itm.description}</h1>
               <h1 className="text-xs font-semibold text-neutral-700">{itm.name}</h1>
             </div>
 
-            <div className="col-start-6 flex items-center">
-              <Button onClick={() => sendUp(itm.id)}>
+
+            <div
+            
+            className="col-start-6 flex items-center">
+              <button
+             
+              onClick={(e) => {
+                sendUp(itm.id)
+                e.stopPropagation()
+              }}>
                 <ThumbsUp
                   className={`${votedIds.has(itm.id) ? 'text-cyan-500' : 'text-neutral-600'} transition-all`} />
-              </Button>
+              </button>
               <h1 className="font-semibold text-sm px-2">{itm._count.upvotes}</h1>
             </div>
-          </div>
+          </motion.div>
         ))}
       </>}
-    </div>
+      {visible && 
+      <>
+      <div 
+      onClick={()=>setVisible(false)}
+      className='inset-0 fixed bg-black/10 backdrop-blur-sm z-10'/>
+      <motion.div
+      layoutId={`card-${index}`}
+      className='bg-neutral-300 backdrop-blur-2xl rounded-2xl  absolute left-200 top-70 w-[35%] z-10 h-85'>
+      
+        {modal &&   <div className='pl-5 pt-5'>
+          <div className='grid grid-cols-3'>
+   <div className='col-span-2'> <img className="w-70   rounded-lg overflow-hidden object-cover " src={modal.thumbnail} alt="" /> </div>
+        <div className='col-start-3 flex items-center'><button
+              onClick={() => {
+                sendUp(modal.id) 
+              }}>
+                <ThumbsUp size={38}
+                  className={`${votedIds.has(modal.id) ? 'text-cyan-500' : 'text-neutral-600'} bg-neutral-500 p-2 rounded-md transition-all`} />
+              </button>
+              <h1 className="font-semibold text-lg px-2">{modal._count.upvotes}</h1>
+          </div>
+          </div>
+       
+         
+            <div 
+            className="font-semibold text-neutral-900">
+              <h1 className="text-lg font-semibold text-neutral-900">{modal.name}</h1>
+              <h1 className="text-sm font-semibold text-neutral-700">{modal.description}</h1>
+            </div>  </div>}
+      </motion.div>
+      </>
+    }  </div>
   )
 }
