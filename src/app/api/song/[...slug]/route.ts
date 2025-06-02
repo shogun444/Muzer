@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "../../../../../prisma/prisma";
 
-export async function GET(req : NextRequest,{params} : {  params : {slug : string}}){
+export async function GET(req : NextRequest,{params} : {  params : {slug : string[]}}){
 
   const data = params.slug
   try {
