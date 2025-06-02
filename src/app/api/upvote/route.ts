@@ -35,7 +35,7 @@ where : {
 })
 
 if(deleteVote){
-  return NextResponse.json({msg : "Vote Removed Succesfully"},{status : 200})
+  return NextResponse.json({msg : "Vote Removed Succesfully",status : "removed"},{status : 200})
 }
 }
 
@@ -48,7 +48,7 @@ const createVote = await prisma.upvotes.create({
 })
 
 if(createVote){
-  return NextResponse.json({msg : "Voted Succesfully", status : "votes"},{status : 200})
+  return NextResponse.json({msg : "Voted Succesfully", status : "voted"},{status : 200})
 }
 
 
