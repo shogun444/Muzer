@@ -26,7 +26,7 @@ export default function SignInPage() {
             <h2 className="text-center text-neutral-100 text-sm sm:text-base">Log in with</h2>
 
             <button
-              onClick={()=>signIn('google')}
+              onClick={()=>signIn('google',{ callbackUrl : '/'})}
               className="w-full flex justify-center items-center gap-2 rounded-md py-2 bg-neutral-300 hover:bg-neutral-200 hover:cursor-pointer transition"
             >
               <svg
