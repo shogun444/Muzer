@@ -31,6 +31,10 @@ callbacks : {
   
 return true
   }
+},
+pages : {
+  'signIn' : '/signIn',
+  'newUser' : '/signUp'
 }
 })
 

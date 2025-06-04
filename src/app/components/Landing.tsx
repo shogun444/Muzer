@@ -113,7 +113,7 @@ const childVariant = {
             <br />
             sound quality.
           </p>
-          <Link href={'http://localhost:3000/api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F'}>
+          <Link href={'/api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F'}>
           <Button
             size={"lg"}
             className="bg-teal-600 hover:bg-teal-700 hover:cursor-pointer
