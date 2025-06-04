@@ -3,9 +3,14 @@
 import { Button } from "@/components/ui/button";
 import Navbar from "../components/Navbar";
 import { Input } from "@/components/ui/input"
-import { signIn } from "next-auth/react";
+import { signIn} from "next-auth/react";
+
+
 
 export default function SignInPage() {
+ 
+
+
   return (
     <div className="min-h-screen w-full pt-2 bg-gradient-to-tr from-[#141415] via-[#1e2022] to-[#111d20] text-white">
       <div className="px-0 md:px-23 "> 
@@ -21,7 +26,7 @@ export default function SignInPage() {
             <h2 className="text-center text-neutral-100 text-sm sm:text-base">Log in with</h2>
 
             <button
-              onClick={() => signIn("google")}
+              onClick={()=>signIn('google')}
               className="w-full flex justify-center items-center gap-2 rounded-md py-2 bg-neutral-300 hover:bg-neutral-200 hover:cursor-pointer transition"
             >
               <svg
