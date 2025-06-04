@@ -136,15 +136,15 @@ async function getDetails(id : string){
       <>
       <div 
       onClick={()=>setVisible(false)}
-      className='inset-0 fixed bg-black/10 backdrop-blur-sm z-10'/>
+      className=' inset-0 fixed bg-black/10 backdrop-blur-sm z-10'/>
       <motion.div
       layoutId={`card-${index}`}
-      className='bg-neutral-300 backdrop-blur-2xl rounded-2xl  absolute left-200 top-70 w-[35%] z-10 h-85'>
+      className='bg-neutral-300 backdrop-blur-2xl rounded-2xl  absolute top-200 left-20 w-86 h-67 md:left-200 md:top-70 md:w-[35%] z-10 md:h-85'>
       
         {modal &&   <div className='pl-5 pt-5'>
           <div className='grid grid-cols-3'>
    <div className='col-span-2'> <img className="w-70   rounded-lg overflow-hidden object-cover " src={modal.thumbnail} alt="" /> </div>
-        <div className='col-start-3 flex items-center'>
+        <div className='col-start-3 flex pl-5 items-center'>
           <button onClick={async() => {
                await sendUp(modal.id) 
                const updatedData = await getDetails(modal.id)

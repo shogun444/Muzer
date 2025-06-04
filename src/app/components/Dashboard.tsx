@@ -3,10 +3,10 @@
 import { Button } from "@/components/ui/button"
 import useSWR from "swr"
 import axios from "axios"
-import { LoaderCircle, Plus, Search } from "lucide-react"
+import { LoaderCircle, Search } from "lucide-react"
 import Data from "./Data"
 import { toast } from "sonner"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 import { useSession } from "next-auth/react"
 import ReactPlayer from 'react-player'
 import Footer from "./Footer"
@@ -19,21 +19,16 @@ interface Datas {
 }
 
 export default function Dashboard() {
- 
   const session = useSession()
-   const [inputValue,setInputValue] = useState('')
-  const [size,setSize] = useState(false)
+  const [inputValue, setInputValue] = useState('')
+  const [size, setSize] = useState(false)
   const Itmref = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
- 
   const [playing, setPlaying] = useState<Datas[]>([])
-  const fetcher = (url : string) => axios.get(url).then((res)=>res.data.res)
 
-  const{data,isLoading,mutate,error} = useSWR<Datas[]>('/api/Nowplaying',fetcher)
-  
-
-
+  const fetcher = (url: string) => axios.get(url).then((res) => res.data.res)
+  const { data, isLoading, mutate } = useSWR<Datas[]>('/api/Nowplaying', fetcher)
 
   async function sendReq() {
     try {
@@ -45,7 +40,7 @@ export default function Dashboard() {
       await axios.post('/api/songs', { link, userId })
       toast.success('Song Added')
       mutate()
-    } catch (error) {
+    } catch {
       toast.error('Invalid Link')
     } finally {
       setLoading(false)
@@ -53,31 +48,24 @@ export default function Dashboard() {
   }
 
   return (
-    <div
+    <div className="flex flex-col items-center w-full pt-10 px-4 bg-neutral-100">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-4 mb-6">
+        <h1 className="text-3xl font-semibold text-neutral-800">Music Dashboard</h1>
 
-    className="flex flex-col justify-center items-center w-full pt-10 bg-neutral-100">
-      <div className="flex justify-between w-full px-10">
-        <div>
-          <h1 className="text-4xl font-semibold text-neutral-800">Music Dashboard</h1>
-        </div>
-
-        <div className="flex justify-center items-center">
-          <Search className={`${size || inputValue ? 'opacity-0' : 'opacity-70'} absolute text-neutral-500 mx-5 `}/>
+        <div className="relative w-full md:w-auto flex flex-col sm:flex-row items-center gap-2">
+          <Search className={`${size || inputValue ? 'opacity-0' : 'opacity-70'} absolute left-3 top-3 text-neutral-500`} />
           <motion.input
-          onMouseEnter={()=>setSize(true)}
-          onMouseLeave={()=>setSize(false)}
-          onChange={(e)=>setInputValue(e.target.value)}
+            onMouseEnter={() => setSize(true)}
+            onMouseLeave={() => setSize(false)}
+            onChange={(e) => setInputValue(e.target.value)}
             ref={Itmref}
             value={inputValue}
-            style={{
-              width : size ? '400px' : ''
-
-            }}
-            className={`${size ? 'animate-in transition-all ' : 'animate-out transition-all'} w-full border border-neutral-300 rounded-lg bg-neutral-200 pl-10 p-2 focus:outline-none focus:ring-2 focus:ring-teal-500`}
+            className="w-full sm:w-[300px] border border-neutral-300 rounded-lg bg-neutral-200 pl-10 p-2 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300"
             type="text"
             placeholder="Paste the URL"
           />
-          <Button onClick={sendReq} className="w-fit ml-5 bg-cyan-600">
+          <Button onClick={sendReq} className="w-full sm:w-auto bg-cyan-600">
             {loading ? (
               <span className="animate-spin"><LoaderCircle /></span>
             ) : (
@@ -87,23 +75,20 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="flex w-full max-w-7xl px-10 gap-8  mt-10 mb-5">
-        {/* Now Playing Section */}
-        <div className="shadow-lg px-4 py-4 rounded-2xl bg-white w-1/2">
+      {/* Main Content */}
+      <div className="flex flex-col md:flex-row w-full max-w-6xl gap-6 mb-10">
+        {/* Now Playing */}
+        <div className="shadow-lg px-4 py-4 rounded-2xl bg-white w-full md:w-1/2">
           <h2 className="text-lg font-semibold text-neutral-700 mb-4">Now Playing</h2>
-          {isLoading   &&
-            <div className="w-full rounded-md">
-              <div className="h-6 rounded mb-4 bg-gray-200 w-3/4"></div>
-              <div className="flex animate-pulse space-x-4">
-                <div className="flex-1 space-y-6 py-1">
-                  <div className="h-72 rounded bg-gray-200"></div>
-                  <div className="space-y-3">
-                    <div className="h-2 rounded bg-gray-200 w-5/6"></div>
-                  </div>
-                </div>
-              </div>
+
+          {isLoading && (
+            <div className="w-full animate-pulse space-y-4">
+              <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+              <div className="h-72 bg-gray-200 rounded"></div>
+              <div className="h-2 bg-gray-200 rounded w-5/6"></div>
             </div>
-          }
+          )}
+
           {data && (
             <>
               <p className="text-sm font-medium text-neutral-600 mb-3">
@@ -112,7 +97,7 @@ export default function Dashboard() {
               <div className="w-full bg-black rounded-md mb-4 overflow-hidden">
                 <ReactPlayer
                   controls
-                  height={350}
+                  height={320}
                   width="100%"
                   onEnded={() => {
                     if (currentIndex < playing.length - 1) {
@@ -124,7 +109,7 @@ export default function Dashboard() {
                   url={`https://www.youtube.com/watch?${data[currentIndex]?.videoId}`}
                 />
               </div>
-              <Button className="w-full mt-5 bg-cyan-600">
+              <Button className="w-full mt-4 bg-cyan-600">
                 {loading ? (
                   <span className="animate-spin"><LoaderCircle /></span>
                 ) : (
@@ -135,10 +120,10 @@ export default function Dashboard() {
           )}
         </div>
 
-        {/* Playlist Section */}
-        <div className="shadow-lg px-4 py-4 h-138 rounded-2xl bg-white w-1/2 overflow-y-auto mask-b-from-88% pb-10 pr-2">
+        {/* Playlist */}
+        <div className="shadow-lg px-4 py-4 rounded-2xl bg-white w-full md:w-1/2 max-h-[500px] overflow-y-auto">
           <h2 className="text-lg font-semibold text-neutral-700 mb-4">Playlist</h2>
-          <Data  mutated={mutate}/>
+          <Data mutated={mutate} />
         </div>
       </div>
 
