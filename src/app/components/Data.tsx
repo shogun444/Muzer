@@ -3,7 +3,7 @@
 import useSWR from 'swr'
 import { Button } from "@/components/ui/button"
 import axios from "axios"
-import { ThumbsUp } from "lucide-react"
+import { LoaderCircle, ThumbsUp } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useSession } from "next-auth/react"
 import { toast } from "sonner"
@@ -26,6 +26,8 @@ export default function Data({ mutated }: props) {
   const [votedIds, setVotedIds] = useState<Set<string>>(new Set())
   const [visible,setVisible] = useState(false)
   const [index,setIndex] =  useState<string>()
+  const [loading,setLoading] = useState(false)
+  const [lindex,setlindex] = useState <string | null>(null)
   const session = useSession()
   const [modal,setModal] = useState<Data | null>(null)
   const fetcher = (url: string) => axios.get(url).then(res => res.data.AllSongs)
@@ -36,6 +38,8 @@ export default function Data({ mutated }: props) {
 
   async function sendUp(id: string) {
     try {
+      setLoading(true)
+      setlindex(id)
       const email = session.data?.user?.email
       if (!email) return
 
@@ -65,12 +69,15 @@ export default function Data({ mutated }: props) {
     } catch (error) {
       console.log(error)
     }
+    finally { 
+      setLoading(false)
+      setlindex(null)
+    }
   }
 async function getDetails(id : string){
   const findSong = await axios.get(`/api/song/${id}`)
   return findSong.data.song
 }
-
 
   return (
     <div >
@@ -86,7 +93,7 @@ async function getDetails(id : string){
         </div>}
 
       {data && <>
-        {data.map((itm) => (
+        {data.map((itm,index) => (
           <motion.div
             onClick={async ()=>{
             setIndex(itm.id)
@@ -111,13 +118,14 @@ async function getDetails(id : string){
             
             className="col-start-6 flex items-center">
               <button
-             
               onClick={(e) => {
                 sendUp(itm.id)
+                
                 e.stopPropagation()
               }}>
-                <ThumbsUp
-                  className={`${votedIds.has(itm.id) ? 'text-cyan-500' : 'text-neutral-600'} transition-all`} />
+                {  lindex === itm.id ?  <LoaderCircle className='animate-spin' /> :  <ThumbsUp
+                  className={`${votedIds.has(itm.id) ? 'text-cyan-500' : 'text-neutral-600'} transition-all`} />}
+               
               </button>
               <h1 className="font-semibold text-sm px-2">{itm._count.upvotes}</h1>
             </div>
@@ -136,12 +144,15 @@ async function getDetails(id : string){
         {modal &&   <div className='pl-5 pt-5'>
           <div className='grid grid-cols-3'>
    <div className='col-span-2'> <img className="w-70   rounded-lg overflow-hidden object-cover " src={modal.thumbnail} alt="" /> </div>
-        <div className='col-start-3 flex items-center'><button
-              onClick={() => {
-                sendUp(modal.id) 
+        <div className='col-start-3 flex items-center'>
+          <button onClick={async() => {
+               await sendUp(modal.id) 
+               const updatedData = await getDetails(modal.id)
+               setModal(updatedData)
               }}>
-                <ThumbsUp size={38}
-                  className={`${votedIds.has(modal.id) ? 'text-cyan-500' : 'text-neutral-600'} bg-neutral-500 p-2 rounded-md transition-all`} />
+                {lindex != null ?  <LoaderCircle className='animate-spin' /> :  <ThumbsUp size={38}
+                  className={`${votedIds.has(modal.id) ? 'text-cyan-500' : 'text-neutral-600'} bg-neutral-500 p-2 rounded-md transition-all`} />}
+               
               </button>
               <h1 className="font-semibold text-lg px-2">{modal._count.upvotes}</h1>
           </div>
