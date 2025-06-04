@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "../../../../../prisma/prisma";
 
-export async function GET(req : NextRequest,{params} : {  params : {slug : string[]}}){
 
-  const data = params.slug
+export async function GET(req : NextRequest,{params} : {params : Promise<{ slug : string[]}>}){
+
+
   try {
+
+
     const song = await prisma.song.findFirst({
     where : {
-      id : data[0]
+      id : (await params).slug[0]
     },include : {
       _count : {
         select : { upvotes : true}

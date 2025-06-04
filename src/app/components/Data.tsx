@@ -30,7 +30,7 @@ export default function Data({ mutated }: props) {
   const [modal,setModal] = useState<Data | null>(null)
   const fetcher = (url: string) => axios.get(url).then(res => res.data.AllSongs)
 
-  const { data, error, isLoading, mutate } = useSWR<Data[]>('https://muzer-taupe.vercel.app/api/songs', fetcher)
+  const { data, error, isLoading, mutate } = useSWR<Data[]>('/api/songs', fetcher)
 
   // Optional: Initialize votedIds from backend if possible, for now assume empty
 
@@ -39,10 +39,10 @@ export default function Data({ mutated }: props) {
       const email = session.data?.user?.email
       if (!email) return
 
-      const res = await axios.post('https://muzer-taupe.vercel.app/api/getId', { email })
+      const res = await axios.post('/api/getId', { email })
       const userId = res.data.User.id
 
-      const vote = await axios.post('https://muzer-taupe.vercel.app/api/upvote', {
+      const vote = await axios.post('/api/upvote', {
         songId: id,
         userId: userId
       })
@@ -67,7 +67,7 @@ export default function Data({ mutated }: props) {
     }
   }
 async function getDetails(id : string){
-  const findSong = await axios.get(`https://muzer-taupe.vercel.app/api/song/${id}`)
+  const findSong = await axios.get(`/api/song/${id}`)
   return findSong.data.song
 }
 
