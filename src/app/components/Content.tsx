@@ -8,7 +8,10 @@ import Landing from "./Landing";
 
 export default function Content(){
  const {status} = useSession();
- if(status === 'loading') return <div>Loading...</div>
-  if(status === 'unauthenticated') return <Landing/>
-   if(status === 'authenticated') return <Dashboard/>
+    if(status === 'authenticated') return <Dashboard/>
+
+if(status ==='loading')
+   return <Dashboard/>
+
+  return <Landing/>
 }

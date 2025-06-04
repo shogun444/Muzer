@@ -153,7 +153,7 @@ finally{
       {mload && <div className="w-full rounded-md">
           <div className="flex flex-col animate-pulse space-x-4">
             {[...Array(1)].map((_, i) =>
-              <div key={i} className="flex-1 space-y-7 py-1">
+              <div key={i} className="flex-1 space-y-7 py-1 pb-4">
                 <div className="mt-5 ml-5 animate-pulse h-50  w-70 rounded-lg bg-gray-200"></div>
                  <div className=" ml-5 animate-pulse h-10  w-70 rounded-lg bg-gray-200"></div>
                  
