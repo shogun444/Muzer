@@ -49,7 +49,7 @@ export default function Navbar(){
     <div onMouseLeave={()=>setHovered(null)} className="flex "> 
     {Links.map((itm,index)=>(<Link
       onMouseEnter={()=>setHovered(index)}
- className="text-sm relative px-5 py-2 mx-3" href={itm.href} key={index}
+ className="hidden md:block md:text-sm md:relative md:px-5 md:py-2 md:mx-3 " href={itm.href} key={index}
 
     >
    

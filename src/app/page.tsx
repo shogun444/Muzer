@@ -9,7 +9,7 @@ export default function Home() {
 
   
   return (
-    <div className="min-h-screen w-full bg-neutral-800 px-25 pb-1 pt-2 ">  
+    <div className="min-h-screen w-full bg-neutral-800 md:px-25 pb-1 pt-2 ">  
     
     <Navbar/>
     <Content/>

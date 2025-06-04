@@ -45,8 +45,8 @@ export default function Section() {
 
   return (
     <>
-      <div className="h-screen w-full bg-neutral-300">
-        <h1 className="text-3xl text-center font-semibold text-neutral-800">
+      <div className="mt-390 pt-40 md:pt-2 md:mt-0 bg-neutral-300  md:h-screen md:w-full md:bg-neutral-300">
+        <h1 className="text-3xl text-center font-semibold text-neutral-800  md:text-neutral-800">
           Join the Sound Revolution  
         </h1>
  <h1 className="text-teal-600 text-center text-xl font-semibold pt-3">Start Sharing Today!</h1>
