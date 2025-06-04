@@ -149,7 +149,7 @@ finally{
       className=' inset-0 fixed bg-black/10 backdrop-blur-sm z-10'/>
       <motion.div
       layoutId={`card-${index}`}
-      className='bg-neutral-300 backdrop-blur-2xl rounded-2xl  absolute top-200 left-20 w-86 h-75 md:left-200 md:top-70 md:w-[35%] z-10 md:h-85'>
+      className='bg-neutral-300 backdrop-blur-2xl rounded-2xl  absolute top-200 left-9 w-86 h-75 md:left-200 md:top-70 md:w-[35%] z-10 md:h-85'>
       {mload && <div className="w-full rounded-md">
           <div className="flex flex-col animate-pulse space-x-4">
             {[...Array(1)].map((_, i) =>
