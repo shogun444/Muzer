@@ -26,6 +26,7 @@ export default function Data({ mutated }: props) {
   const [votedIds, setVotedIds] = useState<Set<string>>(new Set())
   const [visible,setVisible] = useState(false)
   const [index,setIndex] =  useState<string>()
+  const [mload,setMload] = useState(false)
   const [loading,setLoading] = useState(false)
   const [lindex,setlindex] = useState <string | null>(null)
   const session = useSession()
@@ -75,8 +76,16 @@ export default function Data({ mutated }: props) {
     }
   }
 async function getDetails(id : string){
-  const findSong = await axios.get(`/api/song/${id}`)
+  try {
+    setMload(true)
+      const findSong = await axios.get(`/api/song/${id}`)
   return findSong.data.song
+  } catch (error) {
+    console.error()
+  }
+finally{
+  setMload(false)
+}
 }
 
   return (
@@ -98,6 +107,7 @@ async function getDetails(id : string){
             onClick={async ()=>{
             setIndex(itm.id)
             setVisible(prev =>!prev)
+            setModal(null)
             const data = await getDetails(itm.id)
             setModal(data)
             }}
@@ -139,14 +149,25 @@ async function getDetails(id : string){
       className=' inset-0 fixed bg-black/10 backdrop-blur-sm z-10'/>
       <motion.div
       layoutId={`card-${index}`}
-      className='bg-neutral-300 backdrop-blur-2xl rounded-2xl  absolute top-200 left-20 w-86 h-67 md:left-200 md:top-70 md:w-[35%] z-10 md:h-85'>
-      
+      className='bg-neutral-300 backdrop-blur-2xl rounded-2xl  absolute top-200 left-20 w-86 h-75 md:left-200 md:top-70 md:w-[35%] z-10 md:h-85'>
+      {mload && <div className="w-full rounded-md">
+          <div className="flex flex-col animate-pulse space-x-4">
+            {[...Array(1)].map((_, i) =>
+              <div key={i} className="flex-1 space-y-7 py-1">
+                <div className="mt-5 ml-5 animate-pulse h-50  w-70 rounded-lg bg-gray-200"></div>
+                 <div className=" ml-5 animate-pulse h-10  w-70 rounded-lg bg-gray-200"></div>
+                 
+              </div>
+            )}
+          </div>
+          </div>}
         {modal &&   <div className='pl-5 pt-5'>
           <div className='grid grid-cols-3'>
    <div className='col-span-2'> <img className="w-70   rounded-lg overflow-hidden object-cover " src={modal.thumbnail} alt="" /> </div>
         <div className='col-start-3 flex pl-5 items-center'>
           <button onClick={async() => {
-               await sendUp(modal.id) 
+               await sendUp(modal.id)
+               setModal(null) 
                const updatedData = await getDetails(modal.id)
                setModal(updatedData)
               }}>
