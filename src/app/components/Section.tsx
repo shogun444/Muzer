@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion"; // ✅ Corrected import
-
+import Footer from "./Footer";
 export default function Section() {
   const testimonials = [
     {
@@ -43,10 +43,151 @@ export default function Section() {
     
   ];
 
+  const plans = [
+  {
+    name: "Starter",
+    price: "$0",
+    priceNote: "/mo",
+    highlight: false,
+    description: "Great for testing the waters.",
+    features: [
+      "✅ Unlimited listening",
+      "✅ Basic uploads",
+      "❌ No analytics",
+    ],
+    button: "Get Started",
+    bg: "bg-neutral-50",
+    ring: "",
+    border: "border-neutral-200",
+    textColor: "text-neutral-800",
+    buttonVariant: "default",
+  },
+  {
+    name: "Pro",
+    price: "$12",
+    priceNote: "/mo",
+    highlight: true,
+    description: "For creators growing an audience.",
+    features: [
+      "✅ Everything in Free",
+      "✅ Advanced uploads",
+      "✅ Access to insights",
+      "✅ Early feature access",
+    ],
+    button: "Start Free Trial",
+    bg: "bg-white",
+    ring: "ring-2 ring-teal-500",
+    border: "border-teal-500",
+    textColor: "text-teal-600",
+    buttonVariant: "outline",
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    priceNote: "",
+    highlight: false,
+    description: "Tailored for large teams or brands.",
+    features: [
+      "✅ Everything in Pro",
+      "✅ Dedicated account manager",
+      "✅ Team collaboration tools",
+      "✅ Custom integrations",
+    ],
+    button: "Contact Us",
+    bg: "bg-neutral-50",
+    ring: "",
+    border: "border-neutral-200",
+    textColor: "text-neutral-800",
+    buttonVariant: "default",
+  },
+];
+
+
   return (
     <>
-      <div className="mt-390 pt-40 md:pt-2 md:mt-0 bg-neutral-300  md:h-screen md:w-full md:bg-neutral-300">
-        <h1 className="text-3xl text-center font-semibold text-neutral-800  md:text-neutral-800">
+      <div className="pt-300  md:pt-2 md:pb-350 md:mt-0 bg-neutral-300  md:h-screen md:w-full md:bg-neutral-300">
+
+   <div className="bg-neutral-900 py-20">
+    <motion.h2
+whileInView={{
+  y:0,
+  opacity:1
+}}
+initial={{
+  y:50,
+  opacity:0
+}}
+transition={{
+  ease : 'easeInOut'
+}}
+className="text-3xl font-semibold text-center text-neutral-50">
+  Choose Your Plan
+</motion.h2>
+<motion.p 
+whileInView={{
+  y:0,
+  opacity:1
+}}
+initial={{
+  y:50,
+  opacity:0
+}}
+transition={{
+  ease : 'easeInOut'
+}}
+className="text-center text-neutral-300 mt-2 text-xs pt-5 font-semibold max-w-xl mx-auto">
+  Whether you're just getting started or looking to grow your sound brand, we've got a plan for you.
+</motion.p>
+
+<div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 w-110 md:w-6xl mx-auto">
+  {plans.map((plan, index) => (
+    <motion.div
+    whileInView={{
+  y:0,
+  opacity:1,
+  filter: 'blur(0px)'
+}}
+initial={{
+  y:50,
+  opacity:0,
+   filter: 'blur(10px)'
+}}
+exit={{
+  opacity:0
+}}
+transition={{
+  ease : 'easeInOut'
+}}  
+      key={index}
+      className={`border ${plan.border} rounded-2xl p-8 shadow-sm ${plan.bg} flex flex-col justify-between ${plan.ring}`}
+    >
+      <div>
+        <h3 className={`text-xl font-semibold ${plan.textColor}`}>{plan.name}</h3>
+        <p className="mt-2 text-sm text-neutral-600">{plan.description}</p>
+        <p className="mt-6 text-4xl font-bold text-neutral-800">
+          {plan.price}
+          {plan.priceNote && (
+            <span className="text-base font-medium text-neutral-500">{plan.priceNote}</span>
+          )}
+        </p>
+      </div>
+
+      <ul className="mt-6 space-y-2 text-sm text-neutral-600">
+        {plan.features.map((feature, i) => (
+          <li key={i}>{feature}</li>
+        ))}
+      </ul>
+
+      <Button className="mt-6 w-full" variant={'default'}>
+        {plan.button}
+      </Button>
+    </motion.div>
+  ))}
+</div>
+    </div> 
+
+
+        <h1 className="pt-50 text-3xl text-center font-semibold text-neutral-800  md:text-neutral-800">
           Join the Sound Revolution  
         </h1>
  <h1 className="text-teal-600 text-center text-xl font-semibold pt-3">Start Sharing Today!</h1>
@@ -56,7 +197,7 @@ export default function Section() {
           </Button>
         </div>
 
-<div className="w-full overflow-hidden relative"> 
+<div className="w-full overflow-hidden relative "> 
         {/* Testimonial Marquee */}
         <motion.div
           
@@ -88,6 +229,8 @@ export default function Section() {
         </motion.div>
         </div>
       </div>
+      
+
     </>
   );
 }

@@ -10,8 +10,6 @@ export default function Content(){
  const {status} = useSession();
     if(status === 'authenticated') return <Dashboard/>
 
-if(status ==='loading')
-   return <Dashboard/>
-
-  return <Landing/>
+if(status ==='loading' || status === 'unauthenticated')
+    return <Landing/>
 }

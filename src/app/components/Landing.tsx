@@ -1,6 +1,6 @@
 "use client";
 
-import {  motion,  useScroll } from "framer-motion";
+import {  easeInOut, motion,  useScroll } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Footer from "./Footer";
@@ -110,7 +110,7 @@ const childVariant = {
             Experience music like never before with our premium audio platform.
             
             Discover, stream, and share your favorite tracks with unparalleled
-            <br />
+            
             sound quality.
           </p>
           <Link href={'/api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F'}>
@@ -239,7 +239,7 @@ fill="#024f52" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="tru
       </motion.div>
 
       {/* Features Section */}
-      <div ref={containerRef} className="mt-32 h-[250vh] bg-neutral-300 relative px-4 pb-32">
+      <div ref={containerRef} className="mt-32 md:h-[250vh] h-auto bg-neutral-300 relative px-4 pb-32">
         <div className="sticky pt-20 top-5 flex flex-col items-center space-y-20">
           <div className="flex gap-2 flex-wrap justify-center">
             {nav.map((itm, index) => (
@@ -270,7 +270,7 @@ fill="#024f52" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="tru
                 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 style={{ zIndex: index }}
-                className={`hidden  md:absolute md:w-full md:top-0 md:grid grid-cols-2 md:left-0 md:h-full md:py-10 md:rounded-3xl md:shadow-2xl ${feature.bg} ${feature.textColor}`}
+                className={`hidden   md:absolute md:w-full md:top-0 md:grid grid-cols-2 md:left-0 md:h-full md:py-10 md:rounded-3xl md:shadow-2xl ${feature.bg} ${feature.textColor}`}
               >
                 <div className="flex flex-col justify-start py-20 px-10">
                    <h2 className="text-3xl font-semibold text-neutral-200 text-center">
@@ -285,29 +285,49 @@ fill="#024f52" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="tru
                 <img  height={100} width={500} src={feature.src}/>
               </motion.div>
 
-              <div className="md:hidden  bg-neutral-800 p-5 rounded-2xl m-1 my-2 ">
+              <motion.div
+              initial={{opacity : 0,
+                y:50,
+                filter : 'blur(10px)'
+              }}
+              whileInView={{
+                y:0,
+                opacity:1,
+                filter : 'blur(0px)'
+              }}
+              exit={{
+                opacity:0
+              }}
+              transition={{
+                ease : easeInOut
+              }}
+              className="md:hidden h-100 bg-neutral-800 p-5  rounded-2xl m-1 my-2 ">
  <h2 className="text-3xl font-semibold text-neutral-200 text-center">
                   {feature.heading}
                 </h2>
                 <p className="text-xs pt-4 text-center text-neutral-400 max-w-xl mx-auto">
                   {feature.description}
                 </p>
-                <div className="flex justify-center ">
-                     <Button variant={'outline'} className="w-fit text-neutral-800   mt-6">Learn More</Button>
-                </div>
+               
              
                 
                
-                <img  height={70} width={450} src={feature.src}/>
-              </div>
+                <img className="mx-auto" height={70} width={280} src={feature.src}/>
+                 <div className="flex justify-center ">
+                     <Button variant={'outline'} className="w-fit text-neutral-800   mb-1">Learn More</Button>
+                </div>
+              </motion.div>
 
  </div>
             ))}
           </div>
         </div>
       </div>
+
 <Section/>
+
       <Footer />
+
     </div>
   );
 }
