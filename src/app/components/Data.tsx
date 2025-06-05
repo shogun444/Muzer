@@ -36,7 +36,7 @@ export default function Data({ mutated }: props) {
   const { data, error, isLoading, mutate } = useSWR<Data[]>('/api/songs', fetcher)
 
   // Optional: Initialize votedIds from backend if possible, for now assume empty
-
+  
   async function sendUp(id: string) {
     try {
       setLoading(true)
@@ -64,7 +64,7 @@ export default function Data({ mutated }: props) {
         })
       }
 
-      mutated()  // Call outside mutation if needed
+     
       mutate()   // Refresh song data count
 
     } catch (error) {
@@ -73,6 +73,7 @@ export default function Data({ mutated }: props) {
     finally { 
       setLoading(false)
       setlindex(null)
+      mutate()
     }
   }
 async function getDetails(id : string){
@@ -104,6 +105,7 @@ finally{
       {data && <>
         {data.map((itm,index) => (
           <motion.div
+         
             onClick={async ()=>{
             setIndex(itm.id)
             setVisible(prev =>!prev)
@@ -114,7 +116,7 @@ finally{
             key={itm.id}
             className="grid grid-cols-6 overflow-y-auto mt-3 items-center justify-around rounded-2xl bg-neutral-200 p-3  m-3">
             <motion.img 
-            layoutId={`card-${itm.id}`}
+              layoutId={`card-${itm.id}`}
             className="w-100  rounded-lg overflow-hidden " src={itm.thumbnail} alt="" />
             <div 
           
@@ -148,19 +150,21 @@ finally{
       onClick={()=>setVisible(false)}
       className=' inset-0 fixed bg-black/10 backdrop-blur-sm z-10'/>
       <motion.div
-      layoutId={`card-${index}`}
+     layoutId={`card-${index}`}
       className='bg-neutral-300 backdrop-blur-2xl rounded-2xl  absolute top-200 left-9 w-86 h-75 md:left-200 md:top-70 md:w-[35%] z-10 md:h-85'>
-      {mload && <div className="w-full rounded-md">
+      {mload && <motion.div 
+      
+      className="w-full rounded-md">
           <div className="flex flex-col animate-pulse space-x-4">
             {[...Array(1)].map((_, i) =>
               <div key={i} className="flex-1 space-y-7 py-1 pb-4">
-                <div className="mt-5 ml-5 animate-pulse h-50  w-70 rounded-lg bg-gray-200"></div>
-                 <div className=" ml-5 animate-pulse h-10  w-70 rounded-lg bg-gray-200"></div>
+                <div className="mt-5 ml-5  h-50  w-70 rounded-lg bg-gray-50"></div>
+                 <div className=" ml-5  h-10  w-70 rounded-lg bg-gray-200"></div>
                  
               </div>
             )}
           </div>
-          </div>}
+          </motion.div>}
         {modal &&   <div className='pl-5 pt-5'>
           <div className='grid grid-cols-3'>
    <div className='col-span-2'> <img className="w-70   rounded-lg overflow-hidden object-cover " src={modal.thumbnail} alt="" /> </div>

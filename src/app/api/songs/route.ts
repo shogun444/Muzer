@@ -23,6 +23,9 @@ return NextResponse.json({msg : "All current Songs",AllSongs},{status:200})
 
 export async function POST(req : NextRequest){
 const validYtlink = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=[\w-]{11}(&[\w=&-]*)?$/
+
+
+
 const DataSchema = z.object({
   link :  z.string().min(1,{message : `Link can't be empty`}),
   userId : z.string().min(1,{message : `Can't be empty`})
@@ -48,7 +51,7 @@ try {
   const existingData = await prisma.song.findFirst({
     where : {
       link : link,
-      userId : userId  
+      videoId :  videoId 
     }
   })
   if(existingData){
