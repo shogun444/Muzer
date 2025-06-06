@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import Section from "./Section";
 import Bento from "./Bento";
 import Link from "next/link";
+import WordSplit from "./WordSplit";
 
 
 export default function Landing() {
@@ -90,45 +91,80 @@ const parentVariant = {
 const childVariant = {
   initial : {
   opacity : 0,
-  y : 10
+  y : 10,
+  filter : 'blur(10px)'
  },
  animate :{
   opacity : 1,
-  y:0
+  y:0,
+   filter : 'blur(0px)'
  }
 }
 
   return (
-    <div className="min-h-screen w-full bg-neutral-900 text-white ">
+    <div className="min-h-screen w-full  bg-neutral-900 text-white ">
+
+      <div
+  className="
+    h-90 w-full p-1  md:pt-20 flex justify-center items-center 
+    mask-t-from-95% md:mask-t-from-80% md:mask-l-from-55% mask-b-from-35% md:mask-r-from-55%
+    md:bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_2px,transparent_2px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_2px,transparent_2px)]
+    md:bg-[length:60px_60px]
+    md:bg-center
+  "
+>
+
       {/* Hero Section */}
       <div className="flex flex-col  lg:flex-row justify-center items-center  pl-4">
-        <div className="max-w-8xl text-center pt-12 pb-8 md:pb-30 md:pt-30">
-          <h1 className="text-3xl md:text-6xl font-semibold text-neutral-200">
-            The Musician's App
-          </h1>
-          <p className="text-sm md:text-[16px] text-neutral-500 md:text-neutral-400 pt-7 font-semibold ">
-            Experience music like never before with our premium audio platform.
-            
-            Discover, stream, and share your favorite tracks with unparalleled
-            
-            sound quality.
-          </p>
-          <Link href={'/api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F'}>
-          <Button
-            size={"lg"}
-            className="bg-teal-600 hover:bg-teal-700 hover:cursor-pointer
-             text-neutral-900 text-[15px] md:text-lg p-6 mt-6"
-          >
-            Start Free
-          </Button>
-          </Link>
-        </div>
-
+        <motion.div 
+        initial='initial'
+        animate='animate'
+        className="max-w-8xl text-center pt-12 pb-8 md:pb-30 md:pt-30">
+          <motion.h1
+          className="text-3xl md:text-6xl font-semibold text-neutral-200">
+            <WordSplit text={`The Musician's App`}/>
+          </motion.h1>
+          <motion.div 
+          className="text-sm md:text-[16px] text-neutral-500 md:text-neutral-400 pt-7 gap-5 font-semibold ">
+            <WordSplit text={`Experience music like never before with our premium audio platform `}/> 
+            <WordSplit text={` Discover, stream, and share your favorite tracks.`}/> 
+          </motion.div>
+          
+        </motion.div>
+</div>
       
       </div>
-  <div className="flex justify-center ">
+  <motion.div
+   initial={{
+            y:200,
+          }}
+          whileInView={{
+            y:0,
+            opacity:1
+          }}
+          transition={{
+            ease : 'easeInOut'
+          }}
+  className="flex flex-col items-center space-y-10 justify-center ">
+
+    <Link href={'/api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F'}>
+          <motion.button
+          initial={{
+             filter : 'blur(10px)',
+             opacity:0
+          }}
+            animate={{
+               filter : 'blur(0px)',
+               opacity:1
+            }}
+            className="bg-teal-600 rounded-2xl hover:bg-teal-700 hover:cursor-pointer
+             text-neutral-900 text-[12px] md:text-lg px-3 py-2 font-semibold mt-6"
+          >
+            Start Free
+          </motion.button>
+          </Link>
           <img   className="md:rounded-2xl  md:h-162 md:w-300 rounded-md h-76 w-115" src="/Pro1.webp" alt="" />
-        </div>
+        </motion.div>
       <motion.div 
       initial={{
         y : 100,
@@ -166,46 +202,7 @@ xmlns="http://www.w3.org/2000/svg" fill="#024f52" viewBox="0 0 24 24"><g id="SVG
           <h1 className="md:text-xl text-lg font-semibold text-neutral-200 text-left"> Choose your favorite song and upload it </h1>
           <h1 className="font-semibold text-xs md:text-sm pt-2 text-neutral-500 text-left">Upload any song from your library or any public URL. We have all you need to master your craft right in your hand with the Moises App. Enjoy our collective set of features that will make your music experience seamless. We're constantly evolving, innovating, and updating our App. Stay tuned!</h1>
           </Bento>
-
-           <Bento
-           variant={childVariant}
-           className="flex flex-col col-span-1">
-            <svg
-  fill="#024f52"
-  viewBox="0 0 32 32"
-  width="80"
-  height="80"
-  id="icon"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <g strokeWidth="0"></g>
-  <g strokeLinecap="round" strokeLinejoin="round"></g>
-  <g>
-    <defs>
-      <style>{`.cls1{fill:none;}`}</style>
-    </defs>
-    <title>letter--Bb</title>
-    <path d="M23,13H19V9H17V23h6a2,2,0,0,0,2-2V15A2,2,0,0,0,23,13Zm-4,8V15h4v6Z"></path>
-    <path d="M15,12a3,3,0,0,0-3-3H7V23h5a3,3,0,0,0,3-3V18a3,3,0,0,0-.78-2A3,3,0,0,0,15,14ZM9,11h3a1,1,0,0,1,1,1v2a1,1,0,0,1-1,1H9Zm4,9a1,1,0,0,1-1,1H9V17h3a1,1,0,0,1,1,1Z"></path>
-    <rect
-      className="cls1"
-      width="32"
-      height="32"
-    ></rect>
-  </g>
-</svg>
-
-          <h1 className="md:text-xl text-lg font-semibold text-neutral-200"> Easily find and keep up with any song’s chords </h1>
-          <h1  className="font-semibold text-xs md:text-sm pt-2 text-neutral-500">Our Chord Finder identifies and displays chords in real-time, offering unprecedented accuracy. This is particularly useful for learning new songs, understanding chord progressions, and enhancing musical knowledge. </h1>
-          </Bento>
-          </motion.div>
-
-<motion.div
-variants={parentVariant}
-initial='initial'
-whileInView='animate'
-className="grid grid-cols-3 px-3 mx-2 text-left">
-  <Bento 
+<Bento 
   variant={childVariant}
   className="">
 <svg 
@@ -215,6 +212,15 @@ fill="#024f52" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVG
             <h1  className="font-semibold text-xs md:text-sm text-neutral-500">Separate vocals, drums, guitar, bass, and other instruments from any song. Isolate instruments or mute tracks in one click. </h1>
           </Bento>
 
+           
+          </motion.div>
+
+<motion.div
+variants={parentVariant}
+initial='initial'
+whileInView='animate'
+className="grid grid-cols-2 px-3 mx-2 text-left">
+  
            <Bento
            variant={childVariant}
            className="">
