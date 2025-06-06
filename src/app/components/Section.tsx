@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion"; // ✅ Corrected import
-import Footer from "./Footer";
+import { motion } from "motion/react"; // ✅ Corrected import
+import { BorderTrail } from "@/components/ui/border-trail";
 export default function Section() {
   const testimonials = [
     {
@@ -76,8 +76,7 @@ export default function Section() {
     ],
     button: "Start Free Trial",
     bg: "bg-white",
-    ring: "ring-2 ring-teal-500",
-    border: "border-teal-500",
+    
     textColor: "text-teal-600",
     buttonVariant: "outline",
   },
@@ -105,7 +104,7 @@ export default function Section() {
 
   return (
     <>
-      <div className="pt-300  md:pt-2 md:pb-350 md:mt-0 bg-neutral-300  md:h-screen md:w-full md:bg-neutral-300">
+      <div className="pt-300  pb-10 md:pt-2 md:pb-390 md:mt-0 bg-neutral-300  md:h-screen md:w-full md:bg-neutral-300">
 
    <div className="bg-neutral-900 py-20">
     <motion.h2
@@ -138,29 +137,38 @@ transition={{
 className="text-center text-neutral-300 mt-2 text-xs pt-5 font-semibold max-w-xl mx-auto">
   Whether you're just getting started or looking to grow your sound brand, we've got a plan for you.
 </motion.p>
-
-<div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 w-110 md:w-6xl mx-auto">
+<div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 w-90 items-center md:w-6xl mx-auto">
   {plans.map((plan, index) => (
     <motion.div
-    whileInView={{
-  y:0,
-  opacity:1,
-  filter: 'blur(0px)'
-}}
-initial={{
-  y:50,
-  opacity:0,
-   filter: 'blur(10px)'
-}}
-exit={{
-  opacity:0
-}}
-transition={{
-  ease : 'easeInOut'
-}}  
+      whileInView={{
+        y: 0,
+        opacity: 1,
+        filter: 'blur(0px)',
+      }}
+      initial={{
+        y: 50,
+        opacity: 0,
+        filter: 'blur(10px)',
+      }}
+      exit={{
+        opacity: 0,
+      }}
+      transition={{
+        ease: 'easeInOut',
+      }}
       key={index}
-      className={`border ${plan.border} rounded-2xl p-8 shadow-sm ${plan.bg} flex flex-col justify-between ${plan.ring}`}
+      className={`relative overflow-hidden   rounded-2xl p-8 ${
+        plan.name === 'Pro' ? 'h-140' : 'h-120'
+      } shadow-sm ${plan.bg} flex flex-col justify-between`}
     >
+      {/* ✅ Only Pro card gets animated border */}
+      {plan.name === 'Pro' && (
+        <BorderTrail
+          className="bg-gradient-to-l from-teal-700 via-cyan-500 to-teal-400 dark:from-blue-400 dark:via-blue-500 dark:to-blue-700"
+          size={250}
+        />
+      )}
+
       <div>
         <h3 className={`text-xl font-semibold ${plan.textColor}`}>{plan.name}</h3>
         <p className="mt-2 text-sm text-neutral-600">{plan.description}</p>
@@ -184,10 +192,11 @@ transition={{
     </motion.div>
   ))}
 </div>
+
     </div> 
 
 
-        <h1 className="pt-50 text-3xl text-center font-semibold text-neutral-800  md:text-neutral-800">
+        <h1 className="pt-20 text-3xl text-center font-semibold text-neutral-800  md:text-neutral-800">
           Join the Sound Revolution  
         </h1>
  <h1 className="text-teal-600 text-center text-xl font-semibold pt-3">Start Sharing Today!</h1>
@@ -197,7 +206,7 @@ transition={{
           </Button>
         </div>
 
-<div className="w-full overflow-hidden relative "> 
+<div className="w-full overflow-hidden relative  "> 
         {/* Testimonial Marquee */}
         <motion.div
           
