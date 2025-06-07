@@ -1,9 +1,9 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import useSWR,{mutate as globalMutate} from "swr"
+import useSWR, { mutate as globalMutate } from "swr"
 import axios from "axios"
-import {  LoaderCircle, Search, X } from "lucide-react"
+import { LoaderCircle, Search, X } from "lucide-react"
 import Data from "./Data"
 import { toast } from "sonner"
 import React, { useEffect, useRef, useState } from "react"
@@ -21,11 +21,10 @@ interface Datas {
 export default function Dashboard() {
   const session = useSession()
   const [inputValue, setInputValue] = useState('')
-
   const Itmref = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [start,setStart] = useState(false)
+  const [start, setStart] = useState(false)
   const [playing, setPlaying] = useState<Datas[]>([])
 
   const fetcher = (url: string) => axios.get(url).then((res) => res.data.res)
@@ -38,48 +37,54 @@ export default function Dashboard() {
       const email = session.data?.user?.email
       const id = await axios.post('/api/getId', { email: email as string })
       const userId = id.data.User.id
-      const res =  await axios.post('/api/songs', { link, userId })
+      const res = await axios.post('/api/songs', { link, userId })
       toast.success('Song Added')
-    } catch (error : any){
-      if(error.response.data.msg){
+    } catch (error: any) {
+      if (error.response?.data?.msg) {
         toast.error(error.response.data.msg)
+      } else {
+        toast.error('Invalid Link')
       }
-      else { 
- toast.error('Invalid Link')
-      }
-     
     } finally {
       setLoading(false)
       globalMutate('/api/songs')
     }
   }
-const [mounted,setMounted] = useState(false)
-useEffect(()=>{
-setMounted(true)
-},[])
-if(!mounted){
-  return null
-}
+
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  if (!mounted) {
+    return null
+  }
 
   return (
-    <div className="flex flex-col items-center w-full md:pt-10 px-4 bg-neutral-100">
+    <div className="flex flex-col items-center w-full md:pt-10 px-4 pt-10 bg-neutral-100">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-4 mb-6">
         <h1 className="text-3xl font-semibold text-neutral-800 pl-18">Music Dashboard</h1>
-         <X  onClick={()=>setInputValue('')} className={`${inputValue ?  'absolute top-32 right-7 md:top-29 md:right-80 z-10  text-neutral-500 ' : 'opacity-0 '} `} /> 
+
         <div className="relative w-full md:w-auto flex flex-col sm:flex-row items-center gap-2 md:pr-16">
-          <Search className={`${ inputValue &&  ' opacity-70'} absolute left-3 top-2 text-neutral-500`} />
-         
+          <Search className={`${inputValue && 'opacity-70'} absolute left-3 top-2 text-neutral-500`} />
+
           <motion.input
-         
             onChange={(e) => setInputValue(e.target.value)}
             ref={Itmref}
             value={inputValue}
-            className={` w-full sm:w-[300px]   border border-neutral-300 rounded-lg bg-neutral-200  pl-10 pr-10  p-2 focus:outline-none  focus:ring-2 focus:ring-teal-500 transition-all duration-300`}
+            className="w-full sm:w-[300px] border border-neutral-300 rounded-lg bg-neutral-200 pl-10 pr-10 p-2 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300"
             type="text"
             placeholder="Paste the URL"
           />
-          <Button onClick={sendReq} className="w-full sm:w-auto bg-cyan-600">
+
+          {inputValue && (
+            <X
+              onClick={() => setInputValue('')}
+              className="absolute right-4 top-2 text-neutral-500 cursor-pointer"
+            />
+          )}
+
+          <Button onClick={sendReq} className="w-full sm:w-auto bg-cyan-600 mt-2 sm:mt-0">
             {loading ? (
               <div className="animate-spin px-9"><LoaderCircle /></div>
             ) : (
@@ -124,8 +129,8 @@ if(!mounted){
                   url={`https://www.youtube.com/watch?${data[currentIndex]?.videoId}`}
                 />
               </div>
-              <Button onClick={()=>setStart(prev => !prev)} className="w-full mt-4 bg-cyan-600">
-                  {start ? <>Pause</> : <>Play</>}
+              <Button onClick={() => setStart(prev => !prev)} className="w-full mt-4 bg-cyan-600">
+                {start ? <>Pause</> : <>Play</>}
               </Button>
             </>
           )}
