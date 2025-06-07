@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { motion } from "motion/react"; // ✅ Corrected import
+import { motion } from "motion/react"; // ✓ Corrected import
 import { BorderTrail } from "@/components/ui/border-trail";
 export default function Section() {
   const testimonials = [
@@ -51,15 +51,15 @@ export default function Section() {
     highlight: false,
     description: "Great for testing the waters.",
     features: [
-      "✅ Unlimited listening",
-      "✅ Basic uploads",
-      "❌ No analytics",
+      "✓ Unlimited listening",
+      "✓ Basic uploads",
+      "✗ No analytics",
     ],
     button: "Get Started",
     bg: "bg-neutral-50",
     ring: "",
     border: "border-neutral-200",
-    textColor: "text-neutral-800",
+    textColor: "text-neutral-400",
     buttonVariant: "default",
   },
   {
@@ -69,10 +69,10 @@ export default function Section() {
     highlight: true,
     description: "For creators growing an audience.",
     features: [
-      "✅ Everything in Free",
-      "✅ Advanced uploads",
-      "✅ Access to insights",
-      "✅ Early feature access",
+      "✓ Everything in Free",
+      "✓ Advanced uploads",
+      "✓ Access to insights",
+      "✓ Early feature access",
     ],
     button: "Start Free Trial",
     bg: "bg-white",
@@ -87,16 +87,16 @@ export default function Section() {
     highlight: false,
     description: "Tailored for large teams or brands.",
     features: [
-      "✅ Everything in Pro",
-      "✅ Dedicated account manager",
-      "✅ Team collaboration tools",
-      "✅ Custom integrations",
+      "✓ Everything in Pro",
+      "✓ Dedicated account manager",
+      "✓ Team collaboration tools",
+      "✓ Custom integrations",
     ],
     button: "Contact Us",
     bg: "bg-neutral-50",
     ring: "",
     border: "border-neutral-200",
-    textColor: "text-neutral-800",
+    textColor: "text-neutral-400",
     buttonVariant: "default",
   },
 ];
@@ -119,7 +119,7 @@ initial={{
 transition={{
   ease : 'easeInOut'
 }}
-className="text-3xl font-semibold text-center text-neutral-50">
+className="text-neutral-200 text-3xl md:text-5xl font-semibold pt-10 text-center">
   Choose Your Plan
 </motion.h2>
 <motion.p 
@@ -134,7 +134,7 @@ initial={{
 transition={{
   ease : 'easeInOut'
 }}
-className="text-center text-neutral-300 mt-2 text-xs pt-5 font-semibold max-w-xl mx-auto">
+className="font-semibold md:text-[15px] text-xs  text-neutral-500  pt-5 text-center">
   Whether you're just getting started or looking to grow your sound brand, we've got a plan for you.
 </motion.p>
 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 w-90 items-center md:w-6xl mx-auto">
@@ -157,22 +157,22 @@ className="text-center text-neutral-300 mt-2 text-xs pt-5 font-semibold max-w-xl
         ease: 'easeInOut',
       }}
       key={index}
-      className={`relative overflow-hidden   rounded-2xl p-8 ${
+      className={`relative overflow-hidden  bg-gradient-to-tr from-neutral-800 via-neutral-950 to-neutral-900 rounded-2xl p-8 ${
         plan.name === 'Pro' ? 'h-140' : 'h-120'
       } shadow-sm ${plan.bg} flex flex-col justify-between`}
     >
-      {/* ✅ Only Pro card gets animated border */}
+      {/* ✓ Only Pro card gets animated border */}
       {plan.name === 'Pro' && (
         <BorderTrail
-          className="bg-gradient-to-l from-teal-700 via-cyan-500 to-teal-400 dark:from-blue-400 dark:via-blue-500 dark:to-blue-700"
-          size={250}
+          className="bg-neutral-500 dark:from-blue-400 dark:via-blue-500 dark:to-blue-700"
+          size={150}
         />
       )}
 
-      <div>
-        <h3 className={`text-xl font-semibold ${plan.textColor}`}>{plan.name}</h3>
-        <p className="mt-2 text-sm text-neutral-600">{plan.description}</p>
-        <p className="mt-6 text-4xl font-bold text-neutral-800">
+      <div >
+        <h3 className={`text-xl font-semibold  ${plan.textColor}`}>{plan.name}</h3>
+        <p className="mt-2 text-sm text-neutral-300">{plan.description}</p>
+        <p className="mt-6 text-4xl font-bold text-neutral-600">
           {plan.price}
           {plan.priceNote && (
             <span className="text-base font-medium text-neutral-500">{plan.priceNote}</span>
@@ -186,7 +186,7 @@ className="text-center text-neutral-300 mt-2 text-xs pt-5 font-semibold max-w-xl
         ))}
       </ul>
 
-      <Button className="mt-6 w-full" variant={'default'}>
+      <Button className="mt-6 w-full bg-neutral-800 text-neutral-400" variant={'default'}>
         {plan.button}
       </Button>
     </motion.div>
@@ -201,7 +201,7 @@ className="text-center text-neutral-300 mt-2 text-xs pt-5 font-semibold max-w-xl
         </h1>
  <h1 className="text-teal-600 text-center text-xl font-semibold pt-3">Start Sharing Today!</h1>
         <div className="flex justify-center">
-          <Button size={"lg"} className="mt-5 text-md  ">
+          <Button size={"lg"} className=" mt-5 text-md  ">
             Sign Up
           </Button>
         </div>

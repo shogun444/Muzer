@@ -102,12 +102,12 @@ const childVariant = {
 }
 
   return (
-    <div className="min-h-screen w-full  bg-neutral-900 text-white ">
+    <div className="min-h-screen w-full  bg-gradient-to-br from-neutral-900 via-neutral-900 to-neutral-950 text-white ">
 
       <div
-  className="
-    h-90 w-full p-1  md:pt-20 flex justify-center items-center 
-    mask-t-from-95% md:mask-t-from-80% md:mask-l-from-55% mask-b-from-35% md:mask-r-from-55%
+  className=" 
+    h-95 w-full p-1   flex justify-center items-center 
+    mask-t-from-95% md:mask-t-from-20% md:mask-l-from-55% mask-b-from-35% md:mask-r-from-55%
     md:bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_2px,transparent_2px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_2px,transparent_2px)]
     md:bg-[length:60px_60px]
     md:bg-center
@@ -117,23 +117,40 @@ const childVariant = {
       {/* Hero Section */}
       <div className="flex flex-col  lg:flex-row justify-center items-center  pl-4">
         <motion.div 
-        initial='initial'
-        animate='animate'
+      
         className="max-w-8xl text-center pt-12 pb-8 md:pb-30 md:pt-30">
           <motion.h1
-          className="text-3xl md:text-6xl font-semibold text-neutral-200">
-            <WordSplit text={`The Musician's App`}/>
+        
+          className="text-3xl md:text-7xl font-semibold text-neutral-50">
+             <WordSplit text={`The Musician's App`}/>
           </motion.h1>
-          <motion.div 
-          className="text-sm md:text-[16px] text-neutral-500 md:text-neutral-400 pt-7 gap-5 font-semibold ">
-            <WordSplit text={`Experience music like never before with our premium audio platform `}/> 
-            <WordSplit text={` Discover, stream, and share your favorite tracks.`}/> 
-          </motion.div>
+        
           
         </motion.div>
 </div>
-      
+     
       </div>
+         <motion.h1
+
+            initial={{
+             opacity: 0,
+    filter: 'blur(12px)',
+    y:15,
+          }}
+          animate={{
+             opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+          }}
+          transition={{
+            duration : 0.4,
+            delay:0.2,
+            ease : 'easeIn'
+          }}
+          className="max-w-200 md:absolute top-75 leading-relaxed  left-95 text-center z-10 text-sm md:text-[16px] text-neutral-500 md:text-neutral-500 mt-9  font-semibold ">
+        Discover an Immersive Music Experience  Stream Your Favorite Tracks, Explore Fresh Artists, and Share Your Unique Taste with a Global Audience.
+            
+          </motion.h1>
   <motion.div
    initial={{
             y:200,
@@ -151,19 +168,43 @@ const childVariant = {
           <motion.button
           initial={{
              filter : 'blur(10px)',
-             opacity:0
+             opacity:0,
+             y:10
           }}
             animate={{
                filter : 'blur(0px)',
-               opacity:1
+               opacity:1,
+               y:0
+            }}
+            transition={{
+              duration : 0.5,
+              delay : 0.4,
+              ease : 'easeInOut'
             }}
             className="bg-teal-600 rounded-2xl hover:bg-teal-700 hover:cursor-pointer
-             text-neutral-900 text-[12px] md:text-lg px-3 py-2 font-semibold mt-6"
+             text-neutral-800 text-[12px] md:text-sm font-semibold px-3 py-2  mt-6"
           >
             Start Free
           </motion.button>
           </Link>
-          <img   className="md:rounded-2xl  md:h-162 md:w-300 rounded-md h-76 w-115" src="/Pro1.webp" alt="" />
+          <motion.img 
+           initial={{
+             filter : 'blur(10px)',
+             opacity:0,
+             y:10
+          }}
+            animate={{
+               filter : 'blur(0px)',
+               opacity:1,
+               y:0
+            }}
+            transition={{
+              duration : 0.8  ,
+              delay : 0.4
+              ,
+              ease : 'easeInOut'
+            }}
+          className="md:rounded-2xl  md:h-162 md:w-300 rounded-md h-76 w-115" src="/Pro1.webp" alt="" />
         </motion.div>
       <motion.div 
       initial={{
@@ -190,28 +231,30 @@ const childVariant = {
 variants={parentVariant}
 initial='initial'
 whileInView='animate'
-className="grid grid-cols-3 px-5 w-full pt-20 text-left "> 
-        <Bento 
+className="grid grid-cols-3  w-full pt-20 text-left "> 
+       
+<Bento 
+  variant={childVariant}
+  className="">
+    <svg 
+height={70}
+fill="#024f52" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="m 8.7649297,10.258106 c -0.06672,-0.012 -0.251234,-0.045 -0.410022,-0.074 -0.369673,-0.067 -0.834974,-0.2526004 -1.773682,-0.7076004 -0.839519,-0.4069 -1.50786,-0.6468 -2.159441,-0.7749 -0.240207,-0.047 -0.445311,-0.092 -0.455787,-0.099 -0.08336,-0.056 0.487085,-0.3987 0.783343,-0.4702 0.0734,-0.018 0.133449,-0.06 0.133449,-0.094 0,-0.095 -0.437588,-0.4972 -0.665716,-0.6112 -0.706754,-0.353 -2.050206,-0.313 -2.904314,0.087 l -0.312756,0.1464 0.03102,-0.1311 c 0.04281,-0.1808 0.287392,-0.4939 0.533307,-0.6827 0.120741,-0.093 0.424667,-0.2323 0.73711,-0.3387 0.79783,-0.2715 1.08279,-0.5007 0.856299,-0.6887 -0.0904,-0.075 -0.696164,-0.076 -0.940712,0 -0.09165,0.028 -0.174881,0.043 -0.184967,0.032 -0.04637,-0.046 0.318423,-0.3867 0.52877,-0.4933 0.394476,-0.1999 0.82503,-0.2773 1.545526,-0.278 0.744603,0 1.172829,0.056 2.038124,0.2672 0.644593,0.1578 1.251832,0.1965 1.44649,0.092 0.05787,-0.031 0.119186,-0.1119 0.136256,-0.18 0.07813,-0.3113 -0.286355,-0.5603 -0.877835,-0.5998 l -0.386941,-0.026 0.189578,-0.1892 c 0.477445,-0.4766 1.732383,-0.8007 2.71962,-0.7024 0.213593,0.021 0.582648,0.095 0.8201203,0.1637 1.212951,0.3515 2.100762,1.0041 2.504316,1.8407 0.228698,0.4741 0.299034,0.7615 0.303718,1.2408 0.0047,0.4849 -0.07553,0.8059 -0.339341,1.3571 -0.184322,0.3851 -0.283979,0.5227 -0.616276,0.8513 -0.459869,0.4547 -1.044721,0.7888 -1.664598,0.9507004 -0.363151,0.095 -1.3332763,0.1625 -1.6146623,0.1126 z M 10.808048,8.3567056 c 0.528381,-0.2342 0.768623,-0.5942 0.770367,-1.1545 0.0018,-0.5682 -0.284805,-1.0057 -0.821423,-1.254 -0.175216,-0.081 -0.311058,-0.1015 -0.657577,-0.099 -0.3897073,0 -0.4847933,0.023 -0.8829603,0.186 -0.245421,0.1006 -0.675243,0.3191 -0.955161,0.4856 -0.343032,0.204 -0.656324,0.3465 -0.961055,0.4369 -0.248664,0.074 -0.479412,0.1425 -0.512774,0.1527 -0.03336,0.01 -0.06014,0.036 -0.0595,0.056 0.0015,0.05 1.418065,0.8125 1.885992,1.0147 0.609972,0.2635 0.841988,0.3105 1.4369333,0.2913 0.403849,-0.013 0.58817,-0.041 0.75716,-0.1162 z"></path></g></svg>
+
+    <h1 className="md:text-xl text-lg font-semibold text-neutral-200">Ad-Free</h1>
+            <h1  className="font-semibold text-xs pt-2 md:text-sm text-neutral-500">Enjoy your Music seamlessly without any Adds.</h1>
+           
+          </Bento>
+ <Bento 
         variant={childVariant}
         className="flex flex-col  col-span-2 justify-start">
 <svg 
-height={86}
+height={72}
 width={65}
 xmlns="http://www.w3.org/2000/svg" fill="#024f52" viewBox="0 0 24 24"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"></path></g></svg>
 
           <h1 className="md:text-xl text-lg font-semibold text-neutral-200 text-left"> Choose your favorite song and upload it </h1>
           <h1 className="font-semibold text-xs md:text-sm pt-2 text-neutral-500 text-left">Upload any song from your library or any public URL. We have all you need to master your craft right in your hand with the Moises App. Enjoy our collective set of features that will make your music experience seamless. We're constantly evolving, innovating, and updating our App. Stay tuned!</h1>
           </Bento>
-<Bento 
-  variant={childVariant}
-  className="">
-<svg 
-height={70}
-fill="#024f52" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fillRule="evenodd" d="M20,19 C20,20.1045695 19.1045695,21 18,21 L6,21 C4.8954305,21 4,20.1045695 4,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,7 C1,5.8954305 1.8954305,5 3,5 L4,5 C4,3.8954305 4.8954305,3 6,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L21,5 C22.1045695,5 23,5.8954305 23,7 L23,17 C23,18.1045695 22.1045695,19 21,19 L20,19 Z M18,19 L18,5 L6,5 L6,19 L18,19 Z M12,12.1404647 L12,7.13148291 L16.5547002,10.1679497 L15.4452998,11.8320503 L14,10.8685171 L14,14.5 C14,15.9534271 12.6045695,17 11,17 C9.3954305,17 8,15.9534271 8,14.5 C8,13.0465729 9.3954305,12 11,12 C11.3471248,12 11.6844618,12.0489806 12,12.1404647 Z M4,7 L3,7 L3,17 L4,17 L4,7 Z M20,7 L20,17 L21,17 L21,7 L20,7 Z M11,15 C11.6045695,15 12,14.7034271 12,14.5 C12,14.2965729 11.6045695,14 11,14 C10.3954305,14 10,14.2965729 10,14.5 C10,14.7034271 10.3954305,15 11,15 Z"></path> </g></svg>
-            <h1 className="md:text-xl text-lg font-semibold text-neutral-200">AI Audio Separation</h1>
-            <h1  className="font-semibold text-xs md:text-sm text-neutral-500">Separate vocals, drums, guitar, bass, and other instruments from any song. Isolate instruments or mute tracks in one click. </h1>
-          </Bento>
-
            
           </motion.div>
 
@@ -219,7 +262,7 @@ fill="#024f52" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVG
 variants={parentVariant}
 initial='initial'
 whileInView='animate'
-className="grid grid-cols-2 px-3 mx-2 text-left">
+className="grid grid-cols-2  mx-2 text-left">
   
            <Bento
            variant={childVariant}
@@ -236,9 +279,9 @@ fill="#024f52" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="tru
            className="">
 <svg 
 height={70}
-fill="#024f52" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="m 8.7649297,10.258106 c -0.06672,-0.012 -0.251234,-0.045 -0.410022,-0.074 -0.369673,-0.067 -0.834974,-0.2526004 -1.773682,-0.7076004 -0.839519,-0.4069 -1.50786,-0.6468 -2.159441,-0.7749 -0.240207,-0.047 -0.445311,-0.092 -0.455787,-0.099 -0.08336,-0.056 0.487085,-0.3987 0.783343,-0.4702 0.0734,-0.018 0.133449,-0.06 0.133449,-0.094 0,-0.095 -0.437588,-0.4972 -0.665716,-0.6112 -0.706754,-0.353 -2.050206,-0.313 -2.904314,0.087 l -0.312756,0.1464 0.03102,-0.1311 c 0.04281,-0.1808 0.287392,-0.4939 0.533307,-0.6827 0.120741,-0.093 0.424667,-0.2323 0.73711,-0.3387 0.79783,-0.2715 1.08279,-0.5007 0.856299,-0.6887 -0.0904,-0.075 -0.696164,-0.076 -0.940712,0 -0.09165,0.028 -0.174881,0.043 -0.184967,0.032 -0.04637,-0.046 0.318423,-0.3867 0.52877,-0.4933 0.394476,-0.1999 0.82503,-0.2773 1.545526,-0.278 0.744603,0 1.172829,0.056 2.038124,0.2672 0.644593,0.1578 1.251832,0.1965 1.44649,0.092 0.05787,-0.031 0.119186,-0.1119 0.136256,-0.18 0.07813,-0.3113 -0.286355,-0.5603 -0.877835,-0.5998 l -0.386941,-0.026 0.189578,-0.1892 c 0.477445,-0.4766 1.732383,-0.8007 2.71962,-0.7024 0.213593,0.021 0.582648,0.095 0.8201203,0.1637 1.212951,0.3515 2.100762,1.0041 2.504316,1.8407 0.228698,0.4741 0.299034,0.7615 0.303718,1.2408 0.0047,0.4849 -0.07553,0.8059 -0.339341,1.3571 -0.184322,0.3851 -0.283979,0.5227 -0.616276,0.8513 -0.459869,0.4547 -1.044721,0.7888 -1.664598,0.9507004 -0.363151,0.095 -1.3332763,0.1625 -1.6146623,0.1126 z M 10.808048,8.3567056 c 0.528381,-0.2342 0.768623,-0.5942 0.770367,-1.1545 0.0018,-0.5682 -0.284805,-1.0057 -0.821423,-1.254 -0.175216,-0.081 -0.311058,-0.1015 -0.657577,-0.099 -0.3897073,0 -0.4847933,0.023 -0.8829603,0.186 -0.245421,0.1006 -0.675243,0.3191 -0.955161,0.4856 -0.343032,0.204 -0.656324,0.3465 -0.961055,0.4369 -0.248664,0.074 -0.479412,0.1425 -0.512774,0.1527 -0.03336,0.01 -0.06014,0.036 -0.0595,0.056 0.0015,0.05 1.418065,0.8125 1.885992,1.0147 0.609972,0.2635 0.841988,0.3105 1.4369333,0.2913 0.403849,-0.013 0.58817,-0.041 0.75716,-0.1162 z"></path></g></svg>
-            <h1 className="md:text-xl text-lg font-semibold text-neutral-200">Ad-Free</h1>
-            <h1  className="font-semibold text-xs pt-2 md:text-sm text-neutral-500">Enjoy your Music seamlessly without any Adds.</h1>
+fill="#024f52" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fillRule="evenodd" d="M20,19 C20,20.1045695 19.1045695,21 18,21 L6,21 C4.8954305,21 4,20.1045695 4,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,7 C1,5.8954305 1.8954305,5 3,5 L4,5 C4,3.8954305 4.8954305,3 6,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L21,5 C22.1045695,5 23,5.8954305 23,7 L23,17 C23,18.1045695 22.1045695,19 21,19 L20,19 Z M18,19 L18,5 L6,5 L6,19 L18,19 Z M12,12.1404647 L12,7.13148291 L16.5547002,10.1679497 L15.4452998,11.8320503 L14,10.8685171 L14,14.5 C14,15.9534271 12.6045695,17 11,17 C9.3954305,17 8,15.9534271 8,14.5 C8,13.0465729 9.3954305,12 11,12 C11.3471248,12 11.6844618,12.0489806 12,12.1404647 Z M4,7 L3,7 L3,17 L4,17 L4,7 Z M20,7 L20,17 L21,17 L21,7 L20,7 Z M11,15 C11.6045695,15 12,14.7034271 12,14.5 C12,14.2965729 11.6045695,14 11,14 C10.3954305,14 10,14.2965729 10,14.5 C10,14.7034271 10.3954305,15 11,15 Z"></path> </g></svg>
+         <h1 className="md:text-xl text-lg font-semibold text-neutral-200">AI Audio Separation</h1>
+            <h1  className="font-semibold text-xs md:text-sm text-neutral-500 pt-2">Separate vocals, drums, guitar, bass, and other instruments from any song. Isolate instruments or mute tracks in one click. </h1>
           </Bento>
    </motion.div>
           

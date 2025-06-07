@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from "motion/react";
+import { delay, motion } from "motion/react";
 
 
 
@@ -8,12 +8,14 @@ export default function WordSplit( {text} :any ){
 
   const wordParentVariant = {
   initial: {
-    y : 10
+    y : 20
   },
   animate: {
     y : 0,
     transition: {
-      staggerChildren: 0.01, // time between each word
+      ease : 'easeIn',
+      
+            staggerChildren: 0.01, // time between each word
     },
   },
 };
@@ -21,16 +23,14 @@ export default function WordSplit( {text} :any ){
 const wordChildVariant = {
   initial: {
     opacity: 0,
-    y: 10,
-    filter: 'blur(4px)',
+    filter: 'blur(10px)',
   },
   animate: {
     opacity: 1,
-    y: 0,
     filter: 'blur(0px)',
     transition: {
-      duration: 0.4,
-      ease: 'easeOut',
+      duration: 0.3,
+      ease: 'easeIn',
     },
   },
 };
