@@ -47,6 +47,7 @@ animate='animate'
 
 {SplitText.map((itm,idx)=>(
   <motion.span 
+  className="text-center"
   variants={wordChildVariant}
   key={idx}>{itm}</motion.span>
 ))}

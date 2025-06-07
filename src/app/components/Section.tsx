@@ -59,7 +59,7 @@ export default function Section() {
     bg: "bg-neutral-50",
     ring: "",
     border: "border-neutral-200",
-    textColor: "text-neutral-400",
+    textColor: "text-neutral-500",
     buttonVariant: "default",
   },
   {
@@ -96,7 +96,7 @@ export default function Section() {
     bg: "bg-neutral-50",
     ring: "",
     border: "border-neutral-200",
-    textColor: "text-neutral-400",
+    textColor: "text-neutral-500",
     buttonVariant: "default",
   },
 ];
@@ -104,7 +104,7 @@ export default function Section() {
 
   return (
     <>
-      <div className="pt-300  pb-10 md:pt-2 md:pb-390 md:mt-0 bg-neutral-300  md:h-screen md:w-full md:bg-neutral-300">
+      <div className="pt-330  pb-10 md:pt-2 md:pb-390 md:mt-0 bg-neutral-300  md:h-screen md:w-full md:bg-neutral-300">
 
    <div className="bg-neutral-900 py-20">
     <motion.h2
@@ -171,7 +171,7 @@ className="font-semibold md:text-[15px] text-xs  text-neutral-500  pt-5 text-cen
 
       <div >
         <h3 className={`text-xl font-semibold  ${plan.textColor}`}>{plan.name}</h3>
-        <p className="mt-2 text-sm text-neutral-300">{plan.description}</p>
+        <p className="mt-2 text-sm text-neutral-500">{plan.description}</p>
         <p className="mt-6 text-4xl font-bold text-neutral-600">
           {plan.price}
           {plan.priceNote && (
@@ -180,7 +180,7 @@ className="font-semibold md:text-[15px] text-xs  text-neutral-500  pt-5 text-cen
         </p>
       </div>
 
-      <ul className="mt-6 space-y-2 text-sm text-neutral-600">
+      <ul className="mt-6 space-y-2 text-sm text-neutral-400">
         {plan.features.map((feature, i) => (
           <li key={i}>{feature}</li>
         ))}
