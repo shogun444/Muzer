@@ -79,8 +79,9 @@ export default function Dashboard() {
 
           {inputValue && (
             <X
+            size={28}
               onClick={() => setInputValue('')}
-              className="absolute right-4 top-2 text-neutral-500 cursor-pointer"
+              className="absolute right-4 top-2 md:right-50 text-neutral-500 cursor-pointer"
             />
           )}
 

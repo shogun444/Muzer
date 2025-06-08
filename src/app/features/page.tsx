@@ -47,17 +47,17 @@ export default function Features(){
 
 
 
-  return(<div className="mx-23  bg-neutral-900">
+  return(<div className="md:mx-23  bg-gradient-to-r from-[#121212] via-[#1e1e1e] to-[#0f0f0f]">
   <Navbar/>
 <h1 className="text-5xl text-center font-semibold text-neutral-300 my-10">  Explore all Moises features</h1>
-<h1 className="max-w-4xl mx-auto text-neutral-400  mt-10"> Unlock your creative potential with features designed to revolutionize how you create, practice, and produce music. </h1>
+<h1 className="max-w-4xl mx-auto text-neutral-400  mt-10 text-lg font-semibold text-center"> Unlock your creative potential with features designed to revolutionize how you create, practice, and produce music. </h1>
 <div className="flex flex-wrap justify-center gap-6 px-4 py-10">
   {features.map((itm, idx) => (
     <motion.div
       key={idx}
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.1 }}
-      className="bg-gradient-to-br cursor-pointer from-[#121212] via-[#1e1e1e] to-[#0f0f0f] rounded-2xl shadow-lg w-[320px] p-6 hover:shadow-cyan-700/30 transition-shadow duration-300"
+      className="bg-gradient-to-br cursor-pointer from-[#141415] via-[#1e2022] to-[#111d20] rounded-2xl shadow-lg w-[320px] p-6 hover:shadow-cyan-700/30 transition-shadow duration-300"
     >
       <h2 className="text-xl sm:text-2xl font-semibold text-cyan-500 text-center mb-3">
         {itm.heading}

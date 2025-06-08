@@ -7,8 +7,9 @@ import Footer from "./Footer";
 
 import Section from "./Section";
 import Bento from "./Bento";
-import Link from "next/link";
+
 import WordSplit from "./WordSplit";
+import Link from "next/link";
 
 
 export default function Landing() {
@@ -332,7 +333,9 @@ fill="#024f52" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVG
                 <p className="text-sm pt-4 text-center text-neutral-400 max-w-xl mx-auto">
                   {feature.description}
                 </p>
-                <Button variant={'outline'} className="w-fit text-neutral-800 mx-auto mt-6">Learn More</Button>
+                <Link href={'/features'}>
+                <Button variant={'outline'} className="w-fit text-neutral-800 ml-30 mt-6">Learn More</Button>
+               </Link>
                 </div>
                
                 <img  height={100} width={500} src={feature.src}/>
@@ -366,9 +369,11 @@ fill="#024f52" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVG
                 
                
                 <img className="mx-auto" height={70} width={280} src={feature.src}/>
-                 <div className="flex justify-center ">
+                 <Link 
+                 href={'/features'}
+                 className="flex justify-center ">
                      <Button variant={'outline'} className="w-fit text-neutral-800   mb-1">Learn More</Button>
-                </div>
+                </Link>
               </motion.div>
 
  </div>

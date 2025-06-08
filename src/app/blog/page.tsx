@@ -47,7 +47,7 @@ export default function Blog() {
 
                     
               
-    <div className=" mx-23 pb-12  bg-gradient-to-br from-[#141415] via-[#1e2022] to-[#111d20]  min-h-screen" onClick={() => modal && setModal(false)}>
+    <div className=" md:mx-23   bg-gradient-to-br from-[#141415] via-[#1e2022] to-[#111d20]  min-h-screen" onClick={() => modal && setModal(false)}>
       <Navbar />
       <h1 className="text-xl pt-15 text-center font-semibold text-cyan-700">
         WELCOME TO THE MOISES BLOG
@@ -61,7 +61,7 @@ export default function Blog() {
         The latest news, tips, ideas, and tools surrounding Muser and the music community.
       </h2>
 
-      <div className="flex flex-wrap justify-center gap-10">
+      <div className="flex flex-wrap justify-center gap-10 pb-10">
         {blogs.map((itm, idx) => (
           <motion.div
             key={idx}

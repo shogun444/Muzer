@@ -9,16 +9,17 @@ export default function Navbar(){
 
   const Links =[
 {
-    href : '/music',
-    heading : 'Music'
-},{
     href : '/howto',
     heading : 'Howto'}
     ,{
     href : '/blog',
     heading : 'Blog'},{
     href : '/features',
-    heading : 'Features'}
+    heading : 'Features'},
+    {
+    href : '/about',
+    heading : 'About'
+}
 ]
   const [small,setSmall] = useState(false)
    const [hovered,setHovered] = useState<null | number>(null)
