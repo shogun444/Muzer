@@ -18,7 +18,7 @@ export default function signUpPage() {
   
        <h1 className="text-2xl sm:text-3xl mt-10 font-semibold text-center text-neutral-300">Sign up</h1>
       <div className="flex justify-center items-center px-4 py-10">
-        <div className="border-2 border-neutral-700 rounded-md w-90 h-110 pt-10 px-10">
+        <div className="border-2 border-neutral-700 rounded-md w-82 h-110 pt-10 px-10">
    
 
           <div className="space-y-4">
