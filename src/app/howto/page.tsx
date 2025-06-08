@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 
 export default function Howto(){
   return(<>
-  <div className="md:mx-23  bg-gradient-to-br from-[#141415] via-[#1e2022] to-[#111d20] ">
+  <div className="md:mx-23 px-10 bg-gradient-to-br from-[#141415] via-[#1e2022] to-[#111d20] ">
          <Navbar />
 
 
@@ -14,7 +14,7 @@ export default function Howto(){
 
         <h2 className="max-w-4xl text-lg  font-semibold mx-auto text-neutral-400  mt-15">Looking to add your favorite YouTube videos to Muser? Whether you're curating playlists or just exploring content, adding a video is fast and effortless with Muser’s user-friendly interface.
           </h2>
-          <h2 className="max-w-4xl  mx-auto text-neutral-400  mt-3">
+          <h2 className="max-w-4xl   mx-auto text-neutral-400  mt-3">
 <br /><br />
 Follow the simple steps below to get started:
 <br />

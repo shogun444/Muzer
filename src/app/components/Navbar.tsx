@@ -11,6 +11,7 @@ export default function Navbar() {
   const session = useSession()
 
   const staticLinks = [
+    { href : '/' , heading : 'Home'},
     { href: "/howto", heading: "Howto" },
     { href: "/blog", heading: "Blog" },
     { href: "/features", heading: "Features" },
@@ -146,7 +147,7 @@ export default function Navbar() {
             animate={{
               opacity: 1,
             }}
-            className="md:hidden absolute top-15 bg-gradient-to-br from-[#121212] via-[#1e1e1e] to-[#0f0f0f] w-full h-45 text-center"
+            className="md:hidden absolute top-15 bg-gradient-to-br from-[#121212] via-[#1e1e1e] to-[#0f0f0f] w-full pb-5 text-center"
           >
             {Linking.map((itm, index) => (
               <div

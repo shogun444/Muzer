@@ -47,7 +47,7 @@ export default function Features(){
 
 
 
-  return(<div className="md:mx-23  bg-gradient-to-r from-[#121212] via-[#1e1e1e] to-[#0f0f0f]">
+  return(<div className="md:mx-23 px-5 bg-gradient-to-r from-[#121212] via-[#1e1e1e] to-[#0f0f0f]">
   <Navbar/>
 <h1 className="text-5xl text-center font-semibold text-neutral-300 my-10">  Explore all Moises features</h1>
 <h1 className="max-w-4xl mx-auto text-neutral-400  mt-10 text-lg font-semibold text-center"> Unlock your creative potential with features designed to revolutionize how you create, practice, and produce music. </h1>

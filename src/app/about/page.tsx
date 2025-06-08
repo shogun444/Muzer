@@ -31,7 +31,7 @@ description : 'We embrace the power of AI as a collaborative tool and honor crea
 
 
   return(<>
-  <div className="md:mx-23  bg-gradient-to-br from-[#141415] via-[#1e2022] to-[#111d20] ">
+  <div className="md:mx-23 px-10  bg-gradient-to-br from-[#141415] via-[#1e2022] to-[#111d20] ">
          <Navbar />
 
 <h1 className="text-5xl max-w-4xl mx-auto text-center font-semibold text-neutral-300 my-10">

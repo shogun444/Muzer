@@ -47,7 +47,7 @@ export default function Blog() {
 
                     
               
-    <div className=" md:mx-23   bg-gradient-to-br from-[#141415] via-[#1e2022] to-[#111d20]  min-h-screen" onClick={() => modal && setModal(false)}>
+    <div className=" md:mx-23 px-5   bg-gradient-to-br from-[#141415] via-[#1e2022] to-[#111d20]  min-h-screen" onClick={() => modal && setModal(false)}>
       <Navbar />
       <h1 className="text-xl pt-15 text-center font-semibold text-cyan-700">
         WELCOME TO THE MOISES BLOG
