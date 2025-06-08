@@ -46,8 +46,8 @@ Muser is here to power the future of music  with integrity at every beat.
 
 </h1>
 
-<div className="flex flex-wrap gap-5 justify-center items-center pb-10">
-  {headings.map((itm,idx)=>(<div key={idx} className="rounded-2xl border-1 border-neutral-700 w-100 p-5 bg-gradient-to-tr from-neutral-800 to bg-neutral-900 via-neutral-950">
+<div className="flex flex-wrap  md:px-16 gap-5 justify-center items-center pb-10">
+  {headings.map((itm,idx)=>(<div key={idx} className="rounded-2xl h-40 border-1 border-neutral-700 w-100 p-5 bg-gradient-to-tr from-neutral-800 to bg-neutral-900 via-neutral-950">
     <h1 className="font-semibold text-neutral-400 text-2xl">{itm.title}  </h1>
     <h2 className="text-neutral-500 mt-3">{itm.description}  </h2>
 

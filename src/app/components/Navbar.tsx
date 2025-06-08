@@ -65,38 +65,26 @@ export default function Navbar() {
         {/* Large screen menu */}
         <div onMouseLeave={() => setHovered(null)} className="flex">
           {staticLinks.map((itm, index) =>
-            itm.heading === "Sign Out" ? (
-              <div
-                key={index}
-                onClick={() => signOut()}
-                onMouseEnter={() => setHovered(index)}
-                onMouseLeave={() => setHovered(null)}
-                className="hidden md:block md:text-sm md:relative md:px-5 md:py-2 md:mx-3 text-neutral-600 font-semibold relative z-10 cursor-pointer"
-              >
-                {itm.heading}
-                {hovered === index && (
-                  <motion.span
-                    layoutId="Hover-Span"
-                    className="bg-neutral-200 text-neutral-900 px-3 py-1 absolute inset-0 rounded-2xl"
-                  />
-                )}
-              </div>
-            ) : (
-              <Link
-                key={index}
-                href={itm.href}
-                onMouseEnter={() => setHovered(index)}
-                onMouseLeave={() => setHovered(null)}
-                className="hidden md:block md:text-sm md:relative md:px-5 md:py-2 md:mx-3"
-              >
-                <h1 className="text-neutral-600 font-semibold relative z-10">{itm.heading}</h1>
-                {hovered === index && (
-                  <motion.span
-                    layoutId="Hover-Span"
-                    className="bg-neutral-200 text-neutral-900 px-3 py-1 absolute inset-0 rounded-2xl"
-                  />
-                )}
-              </Link>
+          (
+            <Link 
+      onMouseEnter={()=>setHovered(index)}
+ className="hidden md:block md:text-sm md:relative md:px-5 md:py-2 md:mx-3 " href={itm.href} key={index}
+
+    >
+   
+   <h1 className="text-neutral-600 font-semibold relative z-10">{itm.heading}   </h1>
+   {hovered === index && 
+    <motion.span 
+   layoutId="Hover-Span"
+    className=" bg-neutral-200 text-neutral-900 px-3 py-1 absolute inset-0 rounded-2xl "/>
+   }
+
+   
+   
+    </Link>
+             
+              
+             
             )
           )}
         </div>
@@ -158,7 +146,7 @@ export default function Navbar() {
             animate={{
               opacity: 1,
             }}
-            className="absolute top-15 bg-gradient-to-br from-[#121212] via-[#1e1e1e] to-[#0f0f0f] w-full h-45 text-center"
+            className="md:hidden absolute top-15 bg-gradient-to-br from-[#121212] via-[#1e1e1e] to-[#0f0f0f] w-full h-45 text-center"
           >
             {Linking.map((itm, index) => (
               <div
