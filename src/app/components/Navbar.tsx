@@ -7,19 +7,16 @@ import { useState } from "react";
 export default function Navbar(){
 
 
-  const Links =[{
-    href : '/pricing',
-    heading : 'Pricing'
-  },
+  const Links =[
 {
     href : '/music',
     heading : 'Music'
 },{
-    href : '/dashboard',
-    heading : 'Dashboard'}
+    href : '/howto',
+    heading : 'Howto'}
     ,{
-    href : '/products',
-    heading : 'Products'},{
+    href : '/blog',
+    heading : 'Blog'},{
     href : '/features',
     heading : 'Features'}
 ]
@@ -44,7 +41,7 @@ export default function Navbar(){
     duration : 0.2,
     ease : 'easeInOut'
    }}
-  className={`${small ? 'rounded-lg border-1' : ''} items-center z-20 sticky mx-auto top-2 left-0 pt-2 flex text-neutral-50 justify-around bg-neutral-900   border-neutral-800 h-15 w-full`}>
+  className={`${small ? 'rounded-lg border-1' : ''} items-center z-20 sticky  mx-auto top-2 left-0 pt-2 flex text-neutral-50 justify-around bg-neutral-900   border-neutral-800 h-15 w-full`}>
 <Link className="flex items-center " href={'/'}>
 <img className="h-8 rounded-md" src={'/phto.jpeg'} alt="" />
 <h1 className="pl-2">Muzer</h1>
@@ -56,7 +53,7 @@ export default function Navbar(){
 
     >
    
-   <h1 className="text-neutral-600 relative z-10">{itm.heading}   </h1>
+   <h1 className="text-neutral-600 font-semibold relative z-10">{itm.heading}   </h1>
    {hovered === index && 
     <motion.span 
    layoutId="Hover-Span"

@@ -18,7 +18,7 @@ export default function signUpPage() {
   
        <h1 className="text-2xl sm:text-3xl mt-10 font-semibold text-center text-neutral-300">Sign up</h1>
       <div className="flex justify-center items-center px-4 py-10">
-        <div className="w-full sm:w-[90%] md:w-[70%] max-w-md border-2 border-neutral-700 rounded-md p-6 sm:p-8 md:p-10 space-y-6">
+        <div className="border-2 border-neutral-700 rounded-md w-90 h-110 pt-10 px-10">
    
 
           <div className="space-y-4">
@@ -49,7 +49,7 @@ export default function signUpPage() {
           </div>
 
           <div className="space-y-4 pt-4">
-            <h2 className="text-center text-neutral-100 text-sm sm:text-base">Or continue with your email</h2>
+            <h2 className="text-center text-neutral-100 text-sm sm:text-base mt-8">Or continue with your email</h2>
 
             <Input
               className="border-neutral-700 border-2 bg-transparent text-white placeholder:text-neutral-400"
@@ -61,7 +61,7 @@ export default function signUpPage() {
               placeholder="Enter Password"
               type="password"
             />
-            <h1 className="text-xs text-center text-neutral-500">By continuing, I agree to the Terms of Service and Privacy Policy.</h1>
+            <h1 className="text-xs text-center text-neutral-500 mt-7">By continuing, I agree to the Terms of Service and Privacy Policy.</h1>
             <Button className="bg-cyan-500 hover:bg-cyan-600 text-neutral-900 w-full font-semibold">
               Sign up for free
             </Button>

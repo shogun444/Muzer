@@ -22,7 +22,7 @@ export default function SignInPage() {
   
        <h1 className="text-2xl sm:text-3xl mt-10 font-semibold text-center text-neutral-300">Login</h1>
       <div className="flex justify-center items-center px-4 py-10">
-        <div className="w-full sm:w-[90%] md:w-[70%] max-w-md border-2 border-neutral-700 rounded-md p-6 sm:p-8 md:p-10 space-y-6">
+        <div className="border-2 border-neutral-700 rounded-md w-90 h-110 pt-10 px-10">
    
 
           <div className="space-y-4">
@@ -50,10 +50,10 @@ export default function SignInPage() {
           </div>
 
           <div className="space-y-4 pt-4">
-            <h2 className="text-center text-neutral-100 text-sm sm:text-base">Or log in with your email</h2>
+            <h2 className="text-center text-neutral-100 text-sm sm:text-base mt-8">Or log in with your email</h2>
 
             <Input
-              className="border-neutral-700 border-2 bg-transparent text-white placeholder:text-neutral-400"
+              className="border-neutral-700 mt-10 border-2 bg-transparent text-white placeholder:text-neutral-400"
               placeholder="Enter Email"
               type="email"
             />

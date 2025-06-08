@@ -12,4 +12,5 @@ export default function Content(){
 
 if(status ==='loading' || status === 'unauthenticated')
     return <Landing/>
+
 }
